@@ -1,1 +1,71 @@
-<h1>Tu perfil <%= current_user.full_name %></h1>
+<h1>Tu perfil </h1>
+
+<div> 
+  <%if current_user.image != 'no'%>
+    <img src="<%= current_user.image %>" alt="User Image">
+  <% else %>
+    <img src="https://cdn.pixabay.com/photo/2016/10/25/18/27/unknown-1769656_1280.png" alt="no-image">
+  <% end %>
+  <p> Nombre: <%= current_user.full_name %> </p>
+  <p> Correo: <%= current_user.email %> </p>
+  <p>Trabajos: </p>
+  <% if @jobs_assigned.size > 0 %>
+    <ul>
+    <% @jobs_assigned.each do |job| %>
+      <li>
+        <%= job.name %>
+      </li>
+    <% end %>
+    </ul>
+  <% else %>
+    <p> Sin trabajos aún </p>
+  <% end %>
+</div>
+
+<div>
+  <h2>Añadir información</h2>
+  <% if @jobs.size > 0 %>
+    <%= form_for(:job, url:user_user_jobs_path(user_id: current_user.id)) do |f|  %>
+
+      <div class="field">
+        <%= f.label :job_id, 'Seleccione su trabajo' %><br />
+        <%= f.collection_select :job_id, @jobs, :id, :name %>
+      </div>
+
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <%= f.submit 'Añadir'%>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div> 
+<h2> Solicitudes </h2>
+  <div>
+    <h3>Pendientes de aprobación </h3>
+    <% if @requests.size > 0 %>
+    <ul>
+      <% @requests.each do |request| %>
+        <li><%= request[:group].name %></li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p>No hay solicitudes pendientes</p>
+    <% end %>
+  </div>
+  <div>
+    <h3>Enviar solicitud</h3>
+    <%= form_for(:request, url: requests_path ) do |f|  %>
+
+      <div class="field">
+        <%= f.label :group_id, 'Seleccione el grupo' %><br />
+        <%= f.select :group_id, options_for_select(Group.all.map { |group| [group.name, group.id] }) %>
+      </div>
+
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <%= f.submit 'Enviar'%>
+    <% end %>
+  </div>
+</div>

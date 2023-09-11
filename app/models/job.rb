@@ -1,5 +1,5 @@
 class Job < ApplicationRecord
-  belongs_to :users
+  has_and_belongs_to_many :users
 
   validates :name, presence: true
 end

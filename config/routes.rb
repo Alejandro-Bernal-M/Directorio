@@ -9,9 +9,12 @@ Rails.application.routes.draw do
     resources :groups
   end
 
-  resources :users, only: [:show, :create, :update, :delete]
+  resources :users, only: [:show, :create, :update, :delete] do
+    resources :user_jobs, only: [:new, :create]
+  end
   resources  :professions
   resources :jobs
   resources :jobplaces
+  resources :requests
 
 end
