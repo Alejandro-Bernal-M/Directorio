@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_11_123031) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_11_181811) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +27,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_11_123031) do
     t.integer "director_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "groups_users", id: false, force: :cascade do |t|
+    t.bigint "group_id"
+    t.bigint "user_id"
+    t.index ["group_id"], name: "index_groups_users_on_group_id"
+    t.index ["user_id"], name: "index_groups_users_on_user_id"
   end
 
   create_table "jobplaces", force: :cascade do |t|
@@ -50,14 +57,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_11_123031) do
 
   create_table "users", force: :cascade do |t|
     t.string "full_name"
-    t.string "email"
-    t.string "password_digest"
-    t.integer "profession_id"
-    t.integer "job_id"
-    t.integer "jobplace_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "groups", "directors"
+  add_foreign_key "groups_users", "groups"
+  add_foreign_key "groups_users", "users"
 end
