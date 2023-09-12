@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :jobs_users, only: [:new, :create, :destroy] do
       resources :responsibilities, only: [:index, :create, :update, :destroy ]
     end
+    resources :professions_users, only: [:create, :destroy]
   end
   resources  :professions
   resources :jobs 

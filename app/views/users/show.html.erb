@@ -8,6 +8,20 @@
   <% end %>
   <p> Nombre: <%= current_user.full_name %> </p>
   <p> Correo: <%= current_user.email %> </p>
+  <p>Profesiones: </p>
+  <% if @professions_assigned.size > 0 %>
+    <ul>
+    <% @professions_assigned.each do |profession| %>
+      <li>
+        <%= profession[:name] %>
+        <%= button_to 'Eliminar profesión', user_professions_user_path(user_id: current_user.id, id: profession[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
+      </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p> Sin profesiones añadidas aún</p>
+  <% end %>
+  
   <p>Cargos: </p>
   <% if @jobs_assigned.size > 0 %>
     <ul>
@@ -23,7 +37,7 @@
               </ li>
             <% end %>
            <% end %>
-        </ ul>
+        </ul>
         <%= form_for(:responsibility, url: user_jobs_user_responsibilities_path(user_id: current_user.id, jobs_user_id: job[:association_id])) do |f| %>
           <%= f.label :description, 'Añadir responsabilidad' %> <br /> 
           <%= f.text_field :description %>
@@ -41,26 +55,49 @@
 
 <div>
   <h2>Añadir información</h2>
-  <% if @jobs.size > 0 %>
-    <%= form_for(:job, url:user_jobs_users_path(user_id: current_user.id)) do |f|  %>
+  <div>
+    <h3>Profesión </h3>
+    <% if @professions.size > 0 %>
+      <%= form_for(:profession, url:user_professions_users_path(user_id: current_user.id)) do |f|  %>
+        <div class="field">
+          <%= f.label :job_id, 'Seleccione su profesión' %><br />
+          <%= f.collection_select :profession_id, @professions, :id, :name %>
+        </div>
 
-      <div class="field">
-        <%= f.label :job_id, 'Seleccione su cargo' %><br />
-        <%= f.collection_select :job_id, @jobs, :id, :name %>
-      </div>
+        <%= f.hidden_field :user_id, value: current_user.id %>
 
-      <%= f.hidden_field :user_id, value: current_user.id %>
-
-      <%= f.submit 'Añadir'%>
+        <%= f.submit 'Añadir'%>
       <% end %>
-      <% end %>
-      <%= form_for(:job, url: jobs_path ) do |f| %>
+    <% end %>
+      <%= form_for(:profession, url: professions_path ) do |f| %>
         <div>
-        <%= f.label :name, 'Añadir un cargo a la lista' %> <br /> 
-        <%= f.text_field :name %>
+          <%= f.label :name, 'Añadir una profesión a la lista' %> <br /> 
+          <%= f.text_field :name %>
         </div>
         <%= f.submit 'Añadir'%>
+      <% end %>
+  </div>
+  <div>
+    <h3>Cargos </h3>
+    <% if @jobs.size > 0 %>
+      <%= form_for(:job, url:user_jobs_users_path(user_id: current_user.id)) do |f|  %>
+        <div class="field">
+          <%= f.label :job_id, 'Seleccione su cargo' %><br />
+          <%= f.collection_select :job_id, @jobs, :id, :name %>
+        </div>
+
+        <%= f.hidden_field :user_id, value: current_user.id %>
+
+        <%= f.submit 'Añadir'%>
+      <% end %>
     <% end %>
+      <%= form_for(:job, url: jobs_path ) do |f| %>
+        <div>
+          <%= f.label :name, 'Añadir un cargo a la lista' %> <br /> 
+          <%= f.text_field :name %>
+        </div>
+        <%= f.submit 'Añadir'%>
+      <% end %>
   </div>
 </div>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_12_140556) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_12_171451) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_140556) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "professions_users", force: :cascade do |t|
+    t.bigint "profession_id"
+    t.bigint "user_id"
+    t.index ["profession_id"], name: "index_professions_users_on_profession_id"
+    t.index ["user_id"], name: "index_professions_users_on_user_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.integer "user_id"
     t.integer "group_id"
@@ -93,4 +100,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_140556) do
   add_foreign_key "groups_users", "users"
   add_foreign_key "jobs_users", "jobs"
   add_foreign_key "jobs_users", "users"
+  add_foreign_key "professions_users", "professions"
+  add_foreign_key "professions_users", "users"
 end
