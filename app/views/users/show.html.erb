@@ -13,11 +13,26 @@
     <ul>
     <% @jobs_assigned.each do |job| %>
       <li>
-        <%= job.name %>
-        <%= button_to 'Eliminar trabajo', user_user_job_path(user_id: current_user.id, id: job.id), method: :delete, data: { confirm: 'Está seguro?' } %>
+        <%= job[:name] %>
+        <ul>
+          <% if job[:responsibilities].present? %> 
+            <% job[:responsibilities].each do |responsibility| %>
+              <li>
+                <%= responsibility.description %>
+              </ li>
+            <% end %>
+           <% end %>
+        </ ul>
+        <%= form_for(:responsibility, url: user_jobs_user_responsibilities_path(user_id: current_user.id, jobs_user_id: job[:association_id])) do |f| %>
+          <%= f.label :description, 'Añadir función' %> <br /> 
+          <%= f.text_field :description %>
+
+          <%= f.submit 'Añadir' %>
+        <% end %>
+        <%= button_to 'Eliminar trabajo', user_jobs_user_path(user_id: current_user.id, id: job[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
       </li>
+      </ul>
     <% end %>
-    </ul>
   <% else %>
     <p> Sin trabajos aún </p>
   <% end %>
@@ -26,7 +41,7 @@
 <div>
   <h2>Añadir información</h2>
   <% if @jobs.size > 0 %>
-    <%= form_for(:job, url:user_user_jobs_path(user_id: current_user.id)) do |f|  %>
+    <%= form_for(:job, url:user_jobs_users_path(user_id: current_user.id)) do |f|  %>
 
       <div class="field">
         <%= f.label :job_id, 'Seleccione su trabajo' %><br />

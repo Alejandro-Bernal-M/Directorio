@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :create, :update, :destroy] do
-    resources :user_jobs, only: [:new, :create, :destroy]
+    resources :jobs_users, only: [:new, :create, :destroy] do
+      resources :responsibilities, only: [:index, :create, :update, :destroy ]
+    end
   end
   resources  :professions
-  resources :jobs
+  resources :jobs 
   resources :jobplaces
   resources :requests
 

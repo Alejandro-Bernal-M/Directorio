@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_and_belongs_to_many :jobs
-  has_many :professions
-  has_many :jobplaces
+  has_many :professions, dependent: :destroy
+  has_many :jobplaces, dependent: :destroy
 
   has_and_belongs_to_many :groups, class_name: 'Group'
 

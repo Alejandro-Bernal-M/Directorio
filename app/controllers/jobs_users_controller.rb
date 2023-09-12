@@ -1,4 +1,4 @@
-class UserJobsController < ApplicationController
+class JobsUsersController < ApplicationController
   def new
     @user = current_user
     @jobs = Job.all
