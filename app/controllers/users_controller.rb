@@ -20,7 +20,6 @@ class UsersController < ApplicationController
     @jobplaces = Jobplace.all.order(:name)
     @jobplaces_assigned = current_user.jobplaces.map{|jobplace| {name: jobplace.name, city: jobplace.city, association_id: JobplacesUser.where(jobplace_id: jobplace.id, user_id: current_user.id)[0].id}}
     @jobs_assigned = current_user.jobs.map{|job| {name: job.name, association_id: JobsUser.where(job_id: job.id, user_id: current_user.id)[0].id, responsibilities: JobsUser.where(job_id: job.id, user_id: current_user.id)[0].responsibilities, id:job.id }}
-    puts @jobs_assigned
   end
 
   def update; end
