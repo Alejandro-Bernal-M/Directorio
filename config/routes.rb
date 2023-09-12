@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :responsibilities, only: [:index, :create, :update, :destroy ]
     end
     resources :professions_users, only: [:create, :destroy]
+    resources :jobplaces_users, only: [:create, :destroy]
   end
   resources  :professions
   resources :jobs 

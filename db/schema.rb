@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_12_171451) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_12_185641) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_171451) do
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "jobplaces_users", force: :cascade do |t|
+    t.bigint "jobplace_id"
+    t.bigint "user_id"
+    t.index ["jobplace_id"], name: "index_jobplaces_users_on_jobplace_id"
+    t.index ["user_id"], name: "index_jobplaces_users_on_user_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -98,6 +105,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_171451) do
   add_foreign_key "groups", "directors"
   add_foreign_key "groups_users", "groups"
   add_foreign_key "groups_users", "users"
+  add_foreign_key "jobplaces_users", "jobplaces"
+  add_foreign_key "jobplaces_users", "users"
   add_foreign_key "jobs_users", "jobs"
   add_foreign_key "jobs_users", "users"
   add_foreign_key "professions_users", "professions"

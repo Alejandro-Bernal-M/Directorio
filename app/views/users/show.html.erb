@@ -10,17 +10,32 @@
   <p> Correo: <%= current_user.email %> </p>
   <p>Profesiones: </p>
   <% if @professions_assigned.size > 0 %>
-    <ul>
-    <% @professions_assigned.each do |profession| %>
-      <li>
-        <%= profession[:name] %>
-        <%= button_to 'Eliminar profesión', user_professions_user_path(user_id: current_user.id, id: profession[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
-      </li>
-      <% end %>
+  <ul>
+  <% @professions_assigned.each do |profession| %>
+    <li>
+    <%= profession[:name] %>
+    <%= button_to 'Eliminar profesión', user_professions_user_path(user_id: current_user.id, id: profession[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
+    </li>
+    <% end %>
     </ul>
-  <% else %>
+    <% else %>
     <p> Sin profesiones añadidas aún</p>
-  <% end %>
+    <% end %>
+    
+    <p>Lugares de trabajo: </p>
+    <% if @jobplaces_assigned.size > 0 %>
+      <ul>
+      <% @jobplaces_assigned.each do |jobplace| %>
+        <li>
+          <%= jobplace[:name] %>
+          de <%= jobplace[:city] %>
+          <%= button_to 'Eliminar lugar de trabajo', user_jobplaces_user_path(user_id: current_user.id, id: jobplace[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
+        </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p> Sin lugares de trabajo añadidos aún</p>
+    <% end %>
   
   <p>Cargos: </p>
   <% if @jobs_assigned.size > 0 %>
@@ -73,6 +88,32 @@
         <div>
           <%= f.label :name, 'Añadir una profesión a la lista' %> <br /> 
           <%= f.text_field :name %>
+        </div>
+        <%= f.submit 'Añadir'%>
+      <% end %>
+  </div>
+  <div>
+    <h3>Lugar de trabajo </h3>
+    <% if @jobplaces.size > 0 %>
+      <%= form_for(:jobplace, url:user_jobplaces_users_path(user_id: current_user.id)) do |f|  %>
+        <div class="field">
+          <%= f.label :jobplace_id, 'Seleccione su lugar de trabajo' %><br />
+          <%= f.collection_select :jobplace_id, @jobplaces, :id, :name_and_city %>
+        </div>
+
+        <%= f.hidden_field :user_id, value: current_user.id %>
+
+        <%= f.submit 'Añadir'%>
+      <% end %>
+    <% end %>
+      <%= form_for(:jobplace, url: jobplaces_path ) do |f| %>
+        <div>
+          <%= f.label :name, 'Añadir un lugar de trabajo a la lista' %> <br /> 
+          <%= f.text_field :name %>
+        </div>
+        <div>
+          <%= f.label :city, 'Ciudad' %> <br /> 
+          <%= f.text_field :city %>
         </div>
         <%= f.submit 'Añadir'%>
       <% end %>
