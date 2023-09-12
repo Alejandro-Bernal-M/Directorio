@@ -1,4 +1,5 @@
 class DirectorsController < ApplicationController
+  before_action :authenticate_director
 
   def show
     @director = Director.find(params[:id])
