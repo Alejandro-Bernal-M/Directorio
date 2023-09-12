@@ -1,0 +1,173 @@
+<h1>Tu perfil </h1>
+
+<div> 
+  <%if current_user.image != 'no'%>
+    <img src="<%= current_user.image %>" alt="User Image">
+  <% else %>
+    <img height="100px" src="https://cdn.pixabay.com/photo/2016/10/25/18/27/unknown-1769656_1280.png" alt="no-image">
+  <% end %>
+  <p> Nombre: <%= current_user.full_name %> </p>
+  <p> Correo: <%= current_user.email %> </p>
+  <p>Profesiones: </p>
+  <% if @professions_assigned.size > 0 %>
+  <ul>
+  <% @professions_assigned.each do |profession| %>
+    <li>
+    <%= profession[:name] %>
+    <%= button_to 'Eliminar profesión', user_professions_user_path(user_id: current_user.id, id: profession[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
+    </li>
+    <% end %>
+    </ul>
+    <% else %>
+    <p> Sin profesiones añadidas aún</p>
+    <% end %>
+    
+    <p>Lugares de trabajo: </p>
+    <% if @jobplaces_assigned.size > 0 %>
+      <ul>
+      <% @jobplaces_assigned.each do |jobplace| %>
+        <li>
+          <%= jobplace[:name] %>
+          de <%= jobplace[:city] %>
+          <%= button_to 'Eliminar lugar de trabajo', user_jobplaces_user_path(user_id: current_user.id, id: jobplace[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
+        </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p> Sin lugares de trabajo añadidos aún</p>
+    <% end %>
+  
+  <p>Cargos: </p>
+  <% if @jobs_assigned.size > 0 %>
+    <ul>
+    <% @jobs_assigned.each do |job| %>
+      <li>
+        <%= job[:name] %>
+        <ul>
+          <% if job[:responsibilities].present? %> 
+            <% job[:responsibilities].each do |responsibility| %>
+              <li>
+                <%= responsibility.description %>
+                <%= button_to 'Eliminar', user_jobs_user_responsibility_path(user_id: current_user.id, jobs_user_id: job[:association_id], id: responsibility.id), method: :delete, data: { confirm: 'Está seguro?' } %>
+              </ li>
+            <% end %>
+           <% end %>
+        </ul>
+        <%= form_for(:responsibility, url: user_jobs_user_responsibilities_path(user_id: current_user.id, jobs_user_id: job[:association_id])) do |f| %>
+          <%= f.label :description, 'Añadir responsabilidad' %> <br /> 
+          <%= f.text_field :description %>
+
+          <%= f.submit 'Añadir' %>
+        <% end %>
+        <%= button_to 'Eliminar trabajo', user_jobs_user_path(user_id: current_user.id, id: job[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
+      </li>
+      </ul>
+    <% end %>
+  <% else %>
+    <p> Sin cargos añadidos aun </p>
+  <% end %>
+</div>
+
+<div>
+  <h2>Añadir información</h2>
+  <div>
+    <h3>Profesión </h3>
+    <% if @professions.size > 0 %>
+      <%= form_for(:profession, url:user_professions_users_path(user_id: current_user.id)) do |f|  %>
+        <div class="field">
+          <%= f.label :job_id, 'Seleccione su profesión' %><br />
+          <%= f.collection_select :profession_id, @professions, :id, :name %>
+        </div>
+
+        <%= f.hidden_field :user_id, value: current_user.id %>
+
+        <%= f.submit 'Añadir'%>
+      <% end %>
+    <% end %>
+      <%= form_for(:profession, url: professions_path ) do |f| %>
+        <div>
+          <%= f.label :name, 'Añadir una profesión a la lista' %> <br /> 
+          <%= f.text_field :name %>
+        </div>
+        <%= f.submit 'Añadir'%>
+      <% end %>
+  </div>
+  <div>
+    <h3>Lugar de trabajo </h3>
+    <% if @jobplaces.size > 0 %>
+      <%= form_for(:jobplace, url:user_jobplaces_users_path(user_id: current_user.id)) do |f|  %>
+        <div class="field">
+          <%= f.label :jobplace_id, 'Seleccione su lugar de trabajo' %><br />
+          <%= f.collection_select :jobplace_id, @jobplaces, :id, :name_and_city %>
+        </div>
+
+        <%= f.hidden_field :user_id, value: current_user.id %>
+
+        <%= f.submit 'Añadir'%>
+      <% end %>
+    <% end %>
+      <%= form_for(:jobplace, url: jobplaces_path ) do |f| %>
+        <div>
+          <%= f.label :name, 'Añadir un lugar de trabajo a la lista' %> <br /> 
+          <%= f.text_field :name %>
+        </div>
+        <div>
+          <%= f.label :city, 'Ciudad' %> <br /> 
+          <%= f.text_field :city %>
+        </div>
+        <%= f.submit 'Añadir'%>
+      <% end %>
+  </div>
+  <div>
+    <h3>Cargos </h3>
+    <% if @jobs.size > 0 %>
+      <%= form_for(:job, url:user_jobs_users_path(user_id: current_user.id)) do |f|  %>
+        <div class="field">
+          <%= f.label :job_id, 'Seleccione su cargo' %><br />
+          <%= f.collection_select :job_id, @jobs, :id, :name %>
+        </div>
+
+        <%= f.hidden_field :user_id, value: current_user.id %>
+
+        <%= f.submit 'Añadir'%>
+      <% end %>
+    <% end %>
+      <%= form_for(:job, url: jobs_path ) do |f| %>
+        <div>
+          <%= f.label :name, 'Añadir un cargo a la lista' %> <br /> 
+          <%= f.text_field :name %>
+        </div>
+        <%= f.submit 'Añadir'%>
+      <% end %>
+  </div>
+</div>
+
+<div> 
+<h2> Solicitudes </h2>
+  <div>
+    <h3>Pendientes de aprobación </h3>
+    <% if @requests.size > 0 %>
+    <ul>
+      <% @requests.each do |request| %>
+        <li><%= request[:group].name %></li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p>No hay solicitudes pendientes</p>
+    <% end %>
+  </div>
+  <div>
+    <h3>Enviar solicitud</h3>
+    <%= form_for(:request, url: requests_path ) do |f|  %>
+
+      <div class="field">
+        <%= f.label :group_id, 'Seleccione el grupo' %><br />
+        <%= f.select :group_id, options_for_select(Group.all.map { |group| [group.name, group.id] }) %>
+      </div>
+
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <%= f.submit 'Enviar'%>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<header>
+  <nav>
+    <% if request.path != root_path %>
+      <%= link_to 'Inicio', root_path %>
+    <% end %>
+    <% if current_user %>
+      <% if request.path != user_path(current_user) %>
+        <%= link_to "Mi perfil", user_path(current_user) %>
+      <% end %>
+      <%= link_to "Cerrar sesión", destroy_user_session_path, data: { "turbo-method": :delete } %>
+    <% else %>
+      <%= link_to "Iniciar sesión", new_user_session_path, class: "nav-link"  %>
+    <% end %>
+  </nav>
+</header>
