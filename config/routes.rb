@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   resources :jobplaces
   resources :requests
 
+  get "*path", to: "home#index"
 end
