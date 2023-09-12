@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     resources :groups
   end
 
-  resources :users, only: [:show, :create, :update, :delete] do
-    resources :user_jobs, only: [:new, :create]
+  resources :users, only: [:show, :create, :update, :destroy] do
+    resources :user_jobs, only: [:new, :create, :destroy]
   end
   resources  :professions
   resources :jobs

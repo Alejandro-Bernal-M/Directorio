@@ -14,6 +14,7 @@
     <% @jobs_assigned.each do |job| %>
       <li>
         <%= job.name %>
+        <%= button_to 'Eliminar trabajo', user_user_job_path(user_id: current_user.id, id: job.id), method: :delete, data: { confirm: 'Está seguro?' } %>
       </li>
     <% end %>
     </ul>
