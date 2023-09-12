@@ -9,9 +9,9 @@ class JobsUsersController < ApplicationController
     @job = Job.find(params[:job][:job_id])
 
     if @user.jobs << @job
-      flash[:notice] = 'Trabajo añadido.'
+      flash[:notice] = 'Cargo añadido.'
     else
-      flash[:alert] = 'Error añadiendo el trabajo.'
+      flash[:alert] = 'Error añadiendo el cargo.'
     end
     
     redirect_to user_path(@user)
@@ -19,10 +19,10 @@ class JobsUsersController < ApplicationController
   
   def destroy
     @user = current_user
-    if @user.jobs.delete(Job.find(params[:id]))
-      flash[:notice] = 'Trabajo Eliminado.'
+    if JobsUser.find(params[:id]).destroy
+      flash[:notice] = 'Cargo Eliminado.'
     else
-      flash[:alert] = 'Error eliminando el trabajo.'
+      flash[:alert] = 'Error eliminando el cargo.'
     end
     
     redirect_to user_path(@user)

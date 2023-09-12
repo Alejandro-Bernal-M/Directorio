@@ -14,4 +14,15 @@ class ResponsibilitiesController < ApplicationController
     
     redirect_to user_path(current_user) 
   end
+
+  def destroy
+    @responsibility = Responsibility.find(params[:id])
+    if @responsibility.destroy
+      flash[:notice] = 'Responsabilidad eliminada.'
+    else
+      flash[:alert] = 'Error eliminando el responsabilidad.'
+    end
+    
+    redirect_to user_path(current_user)
+  end
 end
