@@ -1,6 +1,10 @@
 <h1>Bienvenido al directorio</h1>
 
 <footer>
-  <%= link_to 'Manejar mis grupos', login_path %>
+  <% if !current_director %>
+    <%= link_to 'Manejar mis grupos', login_path %>
+  <% else %>
+    <%= link_to 'Mis grupos', director_path(current_director) %>
+  <% end %>
   
 </ footer>

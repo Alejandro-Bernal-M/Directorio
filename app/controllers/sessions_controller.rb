@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
   def new
+    if current_director
+      redirect_to director_path(current_director)
+      flash.now[:danger] = 'Sesión activa' 
+    end
   end
 
   def create
