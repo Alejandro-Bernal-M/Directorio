@@ -35,7 +35,14 @@
       <%= f.hidden_field :user_id, value: current_user.id %>
 
       <%= f.submit 'Añadir'%>
-    <% end %>
+      <% end %>
+      <% end %>
+      <%= form_for(:job, url: jobs_path ) do |f| %>
+        <div>
+        <%= f.label :name, 'Añadir trabajo a la lista' %> <br /> 
+        <%= f.text_field :name %>
+        </div>
+        <%= f.submit 'Añadir'%>
     <% end %>
   </div>
 </div>
