@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :set_user, unless: :new_user_session_path
 
   def set_user
-    @current_user = current_user
-    if request.path != root_path && @current_user.nil?
+    unless current_user
+      flash[:alert] = "Inicia sesión primero."
       redirect_to new_user_session_path 
     end
   end
