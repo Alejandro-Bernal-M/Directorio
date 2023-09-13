@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :jobplaces
   resources :requests
   resources :assignations
+  resources :groups_users
 
   get "*path", to: "home#index"
 end

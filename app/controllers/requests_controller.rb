@@ -3,10 +3,15 @@ class RequestsController < ApplicationController
   def show; end
   def create
     @request = Request.new(request_params)
-  
+    @group = Group.find(@request.group_id)
+    if @group.users.exists?(id: @request.user_id)
+      flash[:notice] = 'Ya perteneces al grupo'
+      redirect_to user_path(current_user)
+      return
+    end
+
     if @request.save
       flash[:notice] = 'Solicitud enviada'
-      redirect_to user_path(current_user)
     else
       flash[:notice] = 'La solicitud ya existe'
       redirect_back fallback_location: user_path(current_user)
