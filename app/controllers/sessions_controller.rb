@@ -13,8 +13,8 @@ class SessionsController < ApplicationController
       session[:director_id] = director.id
       redirect_to director_path(director)
     else
-      flash.now[:danger] = 'Correo o contraseña incorrectos'
-      render 'new'
+      flash[:alert] = 'Correo o contraseña incorrectos'
+      redirect_to login_path
     end
   end
 
