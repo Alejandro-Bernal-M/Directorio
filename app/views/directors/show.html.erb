@@ -3,6 +3,7 @@
 <% @groups_with_requests.each do |group| %>
   <p>Grupo:</p>
   <%= group[:group_name] %>
+  <%= link_to 'Directorio del grupo', group_path(group) %>
   <p>Miembros</p>
   <% group[:group_members].each do |member| %>
     <p><%= member.full_name %></p>

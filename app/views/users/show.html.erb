@@ -16,6 +16,7 @@
     <% if @groups_assigned.size > 0 %>
       <%  @groups_assigned.each do |group| %>
         <%=group.name %>
+        <%= link_to 'Directorio del grupo', group_path(group) %>
       <% end %>
     <% else %>
         <p>No pertenece a ningún grupo aún </p>
