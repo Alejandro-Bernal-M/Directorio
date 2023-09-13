@@ -1,1 +1,66 @@
-<%= @group.name %>
+<h1> Directorio de: <%= @group.name %> </h1>
+<% @users_processed.each do |user| %>
+  <div>
+    <%= user[:user].image%>
+    <p>Nombre:   <%= user[:user].full_name %> </P>
+    <p>Correo electrónico:   <%= user[:user].email %> </P>
+    <p>Profesiones: </p>
+      <ul>
+        <% if user[:professions].size > 0 %>
+          <% user[:professions].each do |profession| %>
+            <li>
+              <%= profession.name %>
+            </li>
+          <% end %>
+        <% else %>
+          <li>
+            Sin profesiones registradas aun.
+          </li>
+        <% end %>
+      </ul>
+    <p>Lugares de trabajo: </p>
+      <ul>
+        <% if user[:jobplaces].size > 0 %>
+          <% user[:jobplaces].each do |jobplace| %>
+            <li>
+              <%= jobplace.name %> de <%= jobplace.city %>
+            </li>
+          <% end %>
+        <% else %>
+          <li>
+            Sin lugares de trabajo registrados aun.
+          </li>
+        <% end %>
+      </ul>
+    <p>Cargos: </p>
+      <ul>
+        <% if user[:jobs].size > 0 %>
+          <% user[:jobs].each do |job| %>
+            <li>
+              <%= job[:job].name %>
+            </li>
+            <p>
+              Funciones del cargo:
+            </p>
+            <ul>
+              <% if job[:responsibilities].size > 0 %>
+                <% job[:responsibilities].each do |responsibility| %>
+                  <li>
+                    <%= responsibility.description %>
+                  </li>
+                <% end %>
+              <% else %>
+                <li>
+                  Sin responsabilidades añadidas aun.
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% else %>
+          <li>
+            Sin lugares de trabajo registrados aun.
+          </li>
+        <% end %>
+      </ul>
+  </div>
+<% end %>
