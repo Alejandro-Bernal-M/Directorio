@@ -1,2 +1,5 @@
 <%= @director.username %>
+<% @groups.each do |group| %>
+  <%= group.name %>
+<% end %>
 <%= button_to 'Cerrar sesión', logout_path, method: :delete %>

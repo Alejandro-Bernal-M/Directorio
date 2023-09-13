@@ -3,6 +3,7 @@ class DirectorsController < ApplicationController
 
   def show
     @director = Director.find(params[:id])
+    @groups = Group.where(director_id: @director.id)
   rescue ActiveRecord::RecordNotFound
     render html: '<h1>Not found</h1>'.html_safe
   end
