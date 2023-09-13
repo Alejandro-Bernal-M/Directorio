@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :directors, only: [:show, :index] do
-    resources :groups
-  end
+  resources :directors, only: [:show]
+  resources :groups, only: [:show]
 
   resources :users, only: [:show, :create, :update, :destroy] do
     resources :jobs_users, only: [:new, :create, :destroy] do
@@ -20,5 +22,8 @@ Rails.application.routes.draw do
   resources :jobs 
   resources :jobplaces
   resources :requests
+  resources :assignations, only: [:destroy]
+  resources :groups_users, only: [:create, :destroy]
 
+  get "*path", to: "home#index"
 end

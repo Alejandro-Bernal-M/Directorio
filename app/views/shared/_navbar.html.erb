@@ -9,7 +9,13 @@
       <% end %>
       <%= link_to "Cerrar sesión", destroy_user_session_path, data: { "turbo-method": :delete } %>
     <% else %>
-      <%= link_to "Iniciar sesión", new_user_session_path, class: "nav-link"  %>
+      <%if !current_director %>
+        <%= link_to "Iniciar sesión", new_user_session_path, class: "nav-link"  %>
+      <% end %>
+      <%if current_director %>
+        <%= link_to 'Mis grupos', director_path(current_director) %>
+        <%= link_to "Cerrar sesión", logout_path, data: { "turbo-method": :delete } %>
+      <% end %>
     <% end %>
   </nav>
 </header>

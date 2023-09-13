@@ -1,0 +1,11 @@
+<h1>Iniciando sesión como administrador de grupo</h1>
+<%= form_with(url: login_path, local: true) do |f| %>
+  <%= f.label :email, 'Correo electrónico' %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password, 'Contraseña' %>
+  <%= f.password_field :password %>
+
+  <%= f.submit 'Inicia sesión' %>
+<% end %>
+
