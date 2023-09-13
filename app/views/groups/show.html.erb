@@ -1,7 +1,7 @@
 <h1> Directorio de: <%= @group.name %> </h1>
 <% @users_processed.each do |user| %>
   <div>
-    <%= user[:user].image%>
+    <%= cl_image_tag(user[:user].image.key, crop: :fill) if user[:user].image.attached? %>
     <p>Nombre:   <%= user[:user].full_name %> </P>
     <p>Correo electrónico:   <%= user[:user].email %> </P>
     <p>Profesiones: </p>

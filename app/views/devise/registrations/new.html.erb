@@ -26,7 +26,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <%= f.hidden_field :image, value: 'no' %>
+  <div class="field">
+    <%= f.file_field :image,
+        placeholder: 'Subir imagen',
+        direct_upload: true
+        %>
+  </div>
+  
 
   <div class="actions">
     <%= f.submit "Registrarse" %>

@@ -1,0 +1,11 @@
+development: 
+  cloud_name: "djysooeub"
+  api_key: "462539289968182"
+  api_secret: "W86fCYQNDugObY3uDp8Hr2XVwSI"
+  secure: true
+
+production:
+  cloud_name: "djysooeub"
+  api_key: "462539289968182"
+  api_secret: "W86fCYQNDugObY3uDp8Hr2XVwSI"
+  secure: true

@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_and_belongs_to_many :professions
   has_and_belongs_to_many  :jobplaces
 
+  has_one_attached :image
+
   has_and_belongs_to_many :groups, class_name: 'Group'
 
   validates :email, presence: true, uniqueness: true

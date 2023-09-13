@@ -5,11 +5,8 @@
 <% end %>
 
 <div> 
-  <%if @user.image != 'no'%>
-    <img src="<%= @user.image %>" alt="User Image">
-  <% else %>
-    <img height="100px" src="https://cdn.pixabay.com/photo/2016/10/25/18/27/unknown-1769656_1280.png" alt="no-image">
-  <% end %>
+  <%= cl_image_tag(@user.image.key, crop: :fill) if @user.image.attached? %>
+
   <p> Nombre: <%= @user.full_name %> </p>
   <p> Correo: <%= @user.email %> </p>
   <p> Grupos: </p>
