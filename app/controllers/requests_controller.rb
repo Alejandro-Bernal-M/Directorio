@@ -14,8 +14,8 @@ class RequestsController < ApplicationController
       flash[:notice] = 'Solicitud enviada'
     else
       flash[:notice] = 'La solicitud ya existe'
-      redirect_back fallback_location: user_path(current_user)
     end
+    redirect_to user_path(current_user)
   end
   def update; end
   def destroy; end

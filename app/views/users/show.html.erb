@@ -13,7 +13,7 @@
   <p> Nombre: <%= @user.full_name %> </p>
   <p> Correo: <%= @user.email %> </p>
   <p> Grupos: </p>
-    <% if @groups_assigned %>
+    <% if @groups_assigned.size > 0 %>
       <%  @groups_assigned.each do |group| %>
         <%=group.name %>
       <% end %>
@@ -26,7 +26,9 @@
   <% @professions_assigned.each do |profession| %>
     <li>
     <%= profession[:name] %>
-    <%= button_to 'Eliminar profesión', user_professions_user_path(user_id: @user.id, id: profession[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
+    <% if current_user && current_user.id == @user.id%>
+      <%= button_to 'Eliminar profesión', user_professions_user_path(user_id: @user.id, id: profession[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
+    <% end %>
     </li>
     <% end %>
     </ul>
@@ -41,7 +43,9 @@
         <li>
           <%= jobplace[:name] %>
           de <%= jobplace[:city] %>
-          <%= button_to 'Eliminar lugar de trabajo', user_jobplaces_user_path(user_id: @user.id, id: jobplace[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
+          <% if current_user && current_user.id == @user.id%>
+            <%= button_to 'Eliminar lugar de trabajo', user_jobplaces_user_path(user_id: @user.id, id: jobplace[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
+          <% end %>       
         </li>
         <% end %>
       </ul>
@@ -60,18 +64,22 @@
             <% job[:responsibilities].each do |responsibility| %>
               <li>
                 <%= responsibility.description %>
-                <%= button_to 'Eliminar', user_jobs_user_responsibility_path(user_id: @user.id, jobs_user_id: job[:association_id], id: responsibility.id), method: :delete, data: { confirm: 'Está seguro?' } %>
+                <% if current_user && current_user.id == @user.id%>
+                  <%= button_to 'Eliminar', user_jobs_user_responsibility_path(user_id: @user.id, jobs_user_id: job[:association_id], id: responsibility.id), method: :delete, data: { confirm: 'Está seguro?' } %>
+                <% end %>
               </ li>
             <% end %>
            <% end %>
         </ul>
-        <%= form_for(:responsibility, url: user_jobs_user_responsibilities_path(user_id: @user.id, jobs_user_id: job[:association_id])) do |f| %>
-          <%= f.label :description, 'Añadir responsabilidad' %> <br /> 
-          <%= f.text_field :description %>
+        <% if current_user && current_user.id == @user.id%>
+          <%= form_for(:responsibility, url: user_jobs_user_responsibilities_path(user_id: @user.id, jobs_user_id: job[:association_id])) do |f| %>
+            <%= f.label :description, 'Añadir responsabilidad' %> <br /> 
+            <%= f.text_field :description %>
 
-          <%= f.submit 'Añadir' %>
+            <%= f.submit 'Añadir' %>
+          <% end %>
+          <%= button_to 'Eliminar trabajo', user_jobs_user_path(user_id: @user.id, id: job[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
         <% end %>
-        <%= button_to 'Eliminar trabajo', user_jobs_user_path(user_id: @user.id, id: job[:association_id]), method: :delete, data: { confirm: 'Está seguro?' } %>
       </li>
       </ul>
     <% end %>

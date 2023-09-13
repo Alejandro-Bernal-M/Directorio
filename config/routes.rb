@@ -23,8 +23,8 @@ Rails.application.routes.draw do
   resources :jobs 
   resources :jobplaces
   resources :requests
-  resources :assignations
-  resources :groups_users
+  resources :assignations, only: [:destroy]
+  resources :groups_users, only: [:create, :destroy]
 
   get "*path", to: "home#index"
 end

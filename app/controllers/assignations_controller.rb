@@ -1,14 +1,11 @@
 class AssignationsController < ApplicationController
-  def assign
-    @user = User.find(params[:user_id])
-    @group = Group.find(params[:group_id])
+  def destroy
     @request = Request.find(params[:request_id])
-    if @user.groups << @group
-      flash[:notice]  = 'Usuario asignado al grupo'
-      @request.destroy
-      redirect_to director_path(director)
+    if @request.destroy
+      flash[:notice]  = 'Solicitud eliminada'
     else 
-      flash[:alert] = 'Error añadiendo al usuario'
+      flash[:alert] = 'Error eliminando la solicitud'
     end
+    redirect_to director_path(current_director)
   end
 end

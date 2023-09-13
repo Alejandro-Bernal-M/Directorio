@@ -7,6 +7,7 @@ class DirectorsController < ApplicationController
     @groups = Group.where(director_id: @director.id)
     @groups_with_requests = @groups.map do |group|
       {
+        group_members: group.users,
         group_name: group.name,
         group_id: group.id,
         requests: group.requests.map {|request| {user: @users.find_by(id: request.user_id), request_id: request.id}}
