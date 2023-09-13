@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
 
-  before_action :authenticate_user!, unless: :root_path
+  before_action :authenticate_user!, unless: :root_path || current_director
   before_action :update_allowed_parameters, if: :devise_controller?
-  before_action :set_user, unless: :new_user_session_path
+  before_action :set_user, unless: :new_user_session_path 
 
   def set_user
     unless current_user

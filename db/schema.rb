@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_185641) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "jobs_users", id: false, force: :cascade do |t|
+  create_table "jobs_users", force: :cascade do |t|
     t.bigint "job_id"
     t.bigint "user_id"
     t.index ["job_id"], name: "index_jobs_users_on_job_id"
