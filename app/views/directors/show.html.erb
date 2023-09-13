@@ -1,5 +1,18 @@
-<%= @director.username %>
-<% @groups.each do |group| %>
-  <%= group.name %>
+<h2>Hola <%= @director.username %></h2>
+<p>Estos son tus grupos: </p>
+<% @groups_with_requests.each do |group| %>
+  <p>Grupo:</p>
+  <%= group[:group_name] %>
+  <p> Solicitudes:</p>
+  <% group[:requests].each do |request| %>
+    <div>
+      <p><%= request[:user].full_name %></p>
+      <p><%= request[:user].email %></p>
+      <div>
+        <%= link_to 'Ver perfil', user_path(request[:user].id) %>
+        <%= button_to 'Aceptar', assignations_path(user_id: request[:user].id, request_id: request[:request_id], group_id: group[:group_id]), method: :assign %>
+        <%= button_to 'Rechazar' %>
+      </div>
+    </div>
+  <% end %>
 <% end %>
-<%= button_to 'Cerrar sesión', logout_path, method: :delete %>

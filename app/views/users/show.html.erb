@@ -12,6 +12,14 @@
   <% end %>
   <p> Nombre: <%= @user.full_name %> </p>
   <p> Correo: <%= @user.email %> </p>
+  <p> Grupos: </p>
+    <% if @groups_assigned %>
+      <%  @groups_assigned.each do |group| %>
+        <%=group.name %>
+      <% end %>
+    <% else %>
+        <p>No pertenece a ningún grupo aún </p>
+    <% end %>
   <p>Profesiones: </p>
   <% if @professions_assigned.size > 0 %>
   <ul>
