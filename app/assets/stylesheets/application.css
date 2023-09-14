@@ -13,3 +13,72 @@
  *= require_tree .
  *= require_self
  */
+ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --background-color-1: #e7e6e6;
+  --background-color-2: #313131;
+  --font-1: 'Inter', sans-serif;
+  --font-color-1: #e5e5e5;
+  --font-size-1: 1rem;
+  --font-size-2: 1.5rem;
+  --font-size-3: 2.5rem;
+  --space-1: 1rem;
+  --space-2: 1.5rem;
+  --space-3: 2rem;
+  --alert: #fd0101;
+  --notice: #01fd38;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: var(--background-color-1);
+}
+
+header {
+  height: 60px;
+  width: 100%;
+}
+
+.notice,
+.alert {
+  background-color: var(--background-color-2);
+  font-family: var(--font-1);
+  font-size: var(--font-size-1);
+}
+
+.notice {
+  color: var(--notice);
+}
+
+.alert {
+  color: var(--alert);
+}
+
+nav {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-3);
+  background-color: var(--background-color-2);
+  font-family: var(--font-1);
+  font-size: var(--font-size-1);
+}
+
+nav a {
+  color: var(--font-color-1);
+  text-decoration: none;
+}
