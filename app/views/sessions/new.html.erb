@@ -1,11 +1,19 @@
-<h1>Iniciando sesión como administrador de grupo</h1>
-<%= form_with(url: login_path, local: true) do |f| %>
-  <%= f.label :email, 'Correo electrónico' %>
-  <%= f.email_field :email %>
+<section class="register">
+  <h1>Iniciando sesión como administrador de grupo</h1>
+  <%= form_with(url: login_path, local: true, html: { class: 'new_user' }) do |f| %>
+    <div class="field">
+      <%= f.label :email, 'Correo electrónico' %>
+      <%= f.email_field :email %>
+    </div>
 
-  <%= f.label :password, 'Contraseña' %>
-  <%= f.password_field :password %>
+    <div class="field">
+      <%= f.label :password, 'Contraseña' %>
+      <%= f.password_field :password %>
+    </div>
 
-  <%= f.submit 'Inicia sesión' %>
-<% end %>
+    <div class="actions">
+      <%= f.submit 'Inicia sesión', class: 'btn' %>
+    </div>
+  <% end %>
+</section>
 

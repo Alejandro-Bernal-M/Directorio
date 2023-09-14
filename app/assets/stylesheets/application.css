@@ -110,8 +110,7 @@ footer a {
   width: 100%;
 }
 
-#new-session,
-#new-register{
+.register{
   height: calc(100vh-60px);
   width: 100%;
   display: flex;
@@ -188,5 +187,8 @@ section a {
   color: var(--font-color-1); /* Text color */
   cursor: pointer; /* Change cursor on hover */
   border-radius: 6px;
+}
 
+.director-login {
+  display: flex;
 }
