@@ -7,6 +7,7 @@
   <p>Miembros</p>
   <% group[:group_members].each do |member| %>
     <p><%= member.full_name %></p>
+    <%= cl_image_tag(member.image.key, crop: :fill) if member.image.attached? %>
     <%= link_to 'Ver perfil', user_path(member.id) %>
     <%= button_to 'Eliminar del grupo', groups_user_path(user_id: member.id, group_id: group[:group_id]), method: :delete %>
   <% end %>
@@ -14,6 +15,7 @@
   <% if group[:requests].present? %>
     <% group[:requests].each do |request| %>
       <div>
+        <%= cl_image_tag(request[:user].image.key, crop: :fill) if request[:user].image.attached? %>
         <p><%= request[:user].full_name %></p>
         <p><%= request[:user].email %></p>
         <div>
