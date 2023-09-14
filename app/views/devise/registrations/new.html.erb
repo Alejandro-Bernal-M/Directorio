@@ -15,6 +15,11 @@
     </div>
 
     <div class="field">
+      <%= f.label :cellphone, 'Número de teléfono' %>
+      <%= f.text_field :cellphone, autofocus: true, autocomplete: "cellphone", required: true %>
+    </div>
+
+    <div class="field">
       <%= f.label :password, 'Contraseña' %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> caracteres minimo)</em>

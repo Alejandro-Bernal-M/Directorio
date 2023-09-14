@@ -12,6 +12,7 @@
     <div class="profile-data">
       <p> <span class="profile-title">Nombre:</span> <%= @user.full_name %>. </p>
       <p> <span class="profile-title">Correo:</span>  <%= @user.email %> </p>
+      <p> <span class="profile-title">Número de celular:</span>  <%= @user.cellphone %> </p>
       <p><span class="profile-title"> Grupos:</span>  </p>
         <ul class="group-list list">
           <% if @groups_assigned.size > 0 %>
