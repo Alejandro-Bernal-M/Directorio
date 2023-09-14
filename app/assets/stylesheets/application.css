@@ -110,7 +110,8 @@ footer a {
   width: 100%;
 }
 
-#new-session {
+#new-session,
+#new-register{
   height: calc(100vh-60px);
   width: 100%;
   display: flex;
@@ -147,6 +148,7 @@ footer a {
   border-radius: 6px;
   width: 100%;
   max-width: 400px;
+  padding: 6px 12px;
 }
 
 .remember {
@@ -171,4 +173,20 @@ footer a {
 
 section a {
   color: var(--font-color-2)
+}
+
+/* Hide the default file input button */
+.custom-file-upload {
+  display: none;
+}
+
+/* Style the label to act as the custom button */
+.custom-file-upload-label {
+  display: inline-block;
+  padding: 6px 12px; /* Padding for spacing */
+  background-color: var(--background-color-2); /* Background color */
+  color: var(--font-color-1); /* Text color */
+  cursor: pointer; /* Change cursor on hover */
+  border-radius: 6px;
+
 }
