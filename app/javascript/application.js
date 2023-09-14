@@ -44,3 +44,31 @@ addEventListener("direct-upload:initialize", event => {
   const element = document.getElementById(`direct-upload-${id}`)
   element.classList.add("direct-upload--complete")
  })
+
+ document.addEventListener('turbo:load', function() {
+   // Select the notice element
+   let noticeElement = document.querySelector('.notice');
+   let alertElement = document.querySelector('.alert');
+   setInterval(() => {
+      noticeElement = document.querySelector('.notice');
+      alertElement = document.querySelector('.alert');
+      alertElement.style.display = 'none';
+      noticeElement.style.display = 'none';
+  }, 4000);
+  
+  // Check if the notice element exists
+  if (noticeElement) {
+    // Set a timer to hide the notice after 3 seconds (5000 milliseconds)
+    setTimeout(function() {
+      noticeElement.style.display = 'none';
+    }, 3000);
+  }
+
+  // Check if the alert element exists
+  if (alertElement) {
+    // Set a timer to hide the alert after 3 seconds (5000 milliseconds)
+    setTimeout(function() {
+      alertElement.style.display = 'none';
+    }, 3000);
+  }
+});
