@@ -109,3 +109,66 @@ footer a {
   text-align: center;
   width: 100%;
 }
+
+#new-session {
+  height: calc(100vh-60px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: var(--space-5) 0;
+  gap: var(--space-2);
+  color: var(--font-color-2)
+}
+
+.new_user {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  height: auto;
+  gap: var(--space-2)
+}
+
+.field {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--font-size-1);
+  gap: var(--space-1)
+}
+
+.field input:not([type="checkbox"]) {
+  height: 30px;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.remember {
+  gap:0;
+}
+
+.actions {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  border-radius: 6px;
+  background-color: var(--background-color-2);
+  color: var(--font-color-1);
+  height: 30px;
+  width: 130px;
+  cursor: pointer;
+}
+
+section a {
+  color: var(--font-color-2)
+}
