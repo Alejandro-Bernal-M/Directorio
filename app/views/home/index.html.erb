@@ -1,12 +1,10 @@
-<h1>Bienvenido al directorio</h1>
-
+<section id="home-section">
+  <h1>Bienvenido al Directorio de Equipos</h1>
+</section>
 <footer>
   <% if !current_user %>
     <% if !current_director %>
       <%= link_to 'Manejar mis grupos', login_path %>
-    <% else %>
-      <%= link_to 'Mis grupos', director_path(current_director) %>
     <% end %>
   <% end %>
-  
-</ footer>
+</footer>

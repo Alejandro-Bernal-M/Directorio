@@ -19,6 +19,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: var(--font-1);
 }
 
 :root {
@@ -26,12 +27,16 @@
   --background-color-2: #313131;
   --font-1: 'Inter', sans-serif;
   --font-color-1: #e5e5e5;
+  --font-color-2: #313131;
   --font-size-1: 1rem;
   --font-size-2: 1.5rem;
   --font-size-3: 2.5rem;
   --space-1: 1rem;
   --space-2: 1.5rem;
   --space-3: 2rem;
+  --space-4: 3rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
   --alert: #fd0101;
   --notice: #01fd38;
 }
@@ -65,7 +70,8 @@ header {
   color: var(--alert);
 }
 
-nav {
+nav,
+footer {
   height: 100%;
   width: 100%;
   display: flex;
@@ -74,11 +80,32 @@ nav {
   align-items: center;
   padding: var(--space-3);
   background-color: var(--background-color-2);
-  font-family: var(--font-1);
   font-size: var(--font-size-1);
 }
 
-nav a {
+footer {
+  height: 50px;
+}
+
+nav a,
+footer a {
   color: var(--font-color-1);
   text-decoration: none;
+}
+
+#home-section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--space-6) 0;
+}
+
+#home-section h1 {
+  font-size: var(--font-size-3);
+  padding-top: var(--space-6);
+  color: var(--font-color-2);
+  text-align: center;
+  width: 100%;
 }
