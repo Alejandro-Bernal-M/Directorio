@@ -10,15 +10,29 @@
           <p> <%= group[:group_slogan] %> </p>
           <%= link_to 'Directorio del grupo', group_path(group) %>
         </div>
-        <div class="group-members">
+        <div class="group-requests">
           <p><span class="profile-title">Miembros:</span></p>
-          <% group[:group_members].each do |member| %>
-            <div class="group-member">
-              <p><%= member.full_name %></p>
-              <%= cl_image_tag(member.image.key, crop: :fill) if member.image.attached? %>
-              <%= link_to 'Ver perfil', user_path(member.id) %>
-              <%= button_to 'Eliminar del grupo', groups_user_path(user_id: member.id, group_id: group[:group_id]), method: :delete %>
-            </div>
+          <% if group[:group_members].present? %>
+            <% group[:group_members].each do |member| %>
+              <div class="group-request">
+                <div class="group-request-user">
+                  <div class="group-request-user-image">
+                    <%= cl_image_tag(member.image.key, :width => 200, crop: :fill) if member.image.attached? %>
+                  </div>
+                  <div class="group-request-user-info">
+                    <p><%= member.full_name %></p>
+                    <p><%= member.email %></p>
+                    <p><%= member.cellphone %></p>
+                    <%= link_to 'Ver perfil', user_path(member.id) %>
+                  </div>
+                  <div class="request-btns">
+                    <%= button_to 'Eliminar del grupo', groups_user_path(user_id: member.id, group_id: group[:group_id]), method: :delete , class: 'btn'%>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <p> Sin Miembros. </p>
           <% end %>
         </div>
         <div class="group-requests">
@@ -33,6 +47,7 @@
                   <div class="group-request-user-info">
                     <p><%= request[:user].full_name %></p>
                     <p><%= request[:user].email %></p>
+                    <p><%= request[:user].cellphone %></p>
                     <%= link_to 'Ver perfil', user_path(request[:user].id) %>
                   </div>
                 </div>
@@ -43,7 +58,7 @@
               </div>
               <% end %>
               <% else %>
-              <p> Sin solicitudes </p>
+              <p> Sin solicitudes. </p>
             <% end %>
           <% end %>
         </div>
