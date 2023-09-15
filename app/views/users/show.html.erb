@@ -20,7 +20,9 @@
               <li>
                 <%=group.name%>.
                 <br />
-                <%= link_to 'Ir al directorio del grupo.', group_path(group) %>
+                <% if current_user && @user.id == current_user.id %>
+                  <%= link_to 'Ir al directorio del grupo.', group_path(group) %>
+                <% end %>
               </li>
             <% end %>
           <% else %>
@@ -210,4 +212,8 @@
       </div>
     </div>
   <% end %>
+  <% if current_director %>
+    <%= button_to 'Atrás', director_path(current_director), method: :get, class: 'btn' %>
+  <% end %>
+
 </section>
