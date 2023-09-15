@@ -195,7 +195,8 @@ section a {
   display: flex;
 }
 
-#profile-section {
+#profile-section,
+#director-show {
   height: auto;
   width: 100%;
   display: flex;
@@ -337,4 +338,101 @@ section a {
   align-items: center;
   height: auto;
   gap: var(--space-1)
+}
+
+.groups-container {
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.group {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.group-header {
+  color: var(--font-color-1);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--space-0);
+  padding: var(--space-2);
+  border-radius: 10px;
+}
+
+.group-header a {
+  color: var(--font-color-1);
+}
+
+.group-requests {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.group-request {
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--background-color-2);
+  padding: var(--space-2);
+  border-radius: 10px;
+  box-shadow: 0 2px 2px  1px var(--background-color-2);
+  margin: 0 auto;
+  gap: var(--space-1);
+}
+
+.group-request-user {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  justify-content: center;
+  gap: var(--space-0);
+}
+
+.group-request-user-image {
+  width: 50%;
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.group-request-user-image img {
+  border-radius: 10px;
+}
+
+.group-request-user-info {
+  width: 50%;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-1);
+  flex: 1;
+}
+
+.group-request-user-info p {
+  word-wrap: break-word;
+  word-break: break-all;
+  text-overflow: ellipsis;
+}
+
+.request-btns {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1);
 }
