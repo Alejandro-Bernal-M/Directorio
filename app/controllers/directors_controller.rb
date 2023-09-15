@@ -13,7 +13,7 @@ class DirectorsController < ApplicationController
         requests: group.requests.map {|request| {user: @users.find_by(id: request.user_id), request_id: request.id}}
       }
     end
-
+    print @groups_with_requests
   rescue ActiveRecord::RecordNotFound
     render html: '<h1>Not found</h1>'.html_safe
   end

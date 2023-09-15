@@ -127,7 +127,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_134046) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "image"
     t.string "cellphone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

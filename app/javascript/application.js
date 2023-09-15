@@ -54,21 +54,5 @@ addEventListener("direct-upload:initialize", event => {
       alertElement = document.querySelector('.alert');
       alertElement.style.display = 'none';
       noticeElement.style.display = 'none';
-  }, 4000);
-  
-  // Check if the notice element exists
-  if (noticeElement) {
-    // Set a timer to hide the notice after 3 seconds (5000 milliseconds)
-    setTimeout(function() {
-      noticeElement.style.display = 'none';
-    }, 3000);
-  }
-
-  // Check if the alert element exists
-  if (alertElement) {
-    // Set a timer to hide the alert after 3 seconds (5000 milliseconds)
-    setTimeout(function() {
-      alertElement.style.display = 'none';
-    }, 3000);
-  }
+  }, 6000);
 });

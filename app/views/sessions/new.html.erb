@@ -2,8 +2,8 @@
   <h1>Iniciando sesión como administrador de grupo</h1>
   <%= form_with(url: login_path, local: true, html: { class: 'new_user' }) do |f| %>
     <div class="field">
-      <%= f.label :email, 'Correo electrónico' %>
-      <%= f.email_field :email %>
+      <%= f.label :username, 'Nombre de usuario' %>
+      <%= f.text_field :username %>
     </div>
 
     <div class="field">
