@@ -1,6 +1,7 @@
 <section id='profile-section'>
   <% if current_user &&  current_user.id == @user.id %>
     <h1>Tu perfil </h1>
+    <%= button_to "Editar mi información", edit_user_registration_path, class: 'btn', method: :get %>
   <% else %>
     <h1> Perfil de <%= @user.full_name %> </h1>
   <% end %>
