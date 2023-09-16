@@ -196,7 +196,8 @@ section a {
 }
 
 #profile-section,
-#director-show {
+#director-show,
+#group-show {
   height: auto;
   width: 100%;
   display: flex;
@@ -206,6 +207,10 @@ section a {
   padding: var(--space-5) 0;
   gap: var(--space-4);
   color: var(--font-color-2)
+}
+
+#group-show {
+  padding: var(--space-1) 0;
 }
 
 .profile-info {
@@ -410,6 +415,7 @@ section a {
 
 .group-profile-user-image img {
   border-radius: 10px;
+  height: 200px;
 }
 
 .group-profile-user-info {
@@ -421,6 +427,7 @@ section a {
   align-items: flex-start;
   gap: var(--space-1);
   flex: 1;
+  text-transform: capitalize;
 }
 
 .group-profile-user-info p {
@@ -435,4 +442,17 @@ section a {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-1);
+}
+
+.group-header {
+  width: 90%;
+  height: auto;
+}
+
+.directory-image {
+  max-height: 300px;
+}
+
+.directory-profile-holder {
+  width: 85%;
 }

@@ -54,5 +54,5 @@ addEventListener("direct-upload:initialize", event => {
       alertElement = document.querySelector('.alert');
       alertElement.style.display = 'none';
       noticeElement.style.display = 'none';
-  }, 6000);
+  }, 10000);
 });

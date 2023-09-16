@@ -1,66 +1,79 @@
-<h1 style="color: <%= @group.color %>;"> Directorio de: <%= @group.name %> </h1>
-<% @users_processed.each do |user| %>
-  <div>
-    <%= cl_image_tag(user[:user].image.key, crop: :fill) if user[:user].image.attached? %>
-    <p>Nombre:   <%= user[:user].full_name %> </P>
-    <p>Correo electrónico:   <%= user[:user].email %> </P>
-    <p>Profesiones: </p>
-      <ul>
-        <% if user[:professions].size > 0 %>
-          <% user[:professions].each do |profession| %>
-            <li>
-              <%= profession.name %>
-            </li>
-          <% end %>
-        <% else %>
-          <li>
-            Sin profesiones registradas aun.
-          </li>
-        <% end %>
-      </ul>
-    <p>Lugares de trabajo: </p>
-      <ul>
-        <% if user[:jobplaces].size > 0 %>
-          <% user[:jobplaces].each do |jobplace| %>
-            <li>
-              <%= jobplace.name %> de <%= jobplace.city %>
-            </li>
-          <% end %>
-        <% else %>
-          <li>
-            Sin lugares de trabajo registrados aun.
-          </li>
-        <% end %>
-      </ul>
-    <p>Cargos: </p>
-      <ul>
-        <% if user[:jobs].size > 0 %>
-          <% user[:jobs].each do |job| %>
-            <li>
-              <%= job[:job].name %>
-            </li>
-            <p>
-              Funciones del cargo:
-            </p>
-            <ul>
-              <% if job[:responsibilities].size > 0 %>
-                <% job[:responsibilities].each do |responsibility| %>
+<section id="group-show">
+  <div class="group-header" style="background-color: <%= @group.color %>;">
+    <h1 > Directorio de: <%= @group.name %> </h1>
+  </div>
+  <div class="group-profiles-holder directory-profile-holder">
+    <% @users_processed.each do |user| %>
+      <div class="group-profile">
+        <div class="group-profile-user">
+          <div class="group-profile-user-image directory-image">
+            <%= cl_image_tag(user[:user].image.key, :width => 200, crop: :fill) if user[:user].image.attached? %>
+          </div>
+          <div class="group-profile-user-info">
+            <p><span class="profile-title">Nombre:</span> <br />  <%= user[:user].full_name %> </P>
+            <p><span class="profile-title">Correo electrónico:</span>  <br /> <%= user[:user].email %> </P>
+            <p><span class="profile-title">Número de contacto:</span>  <br /> <%= user[:user].cellphone %> </P>
+            <p><span class="profile-title">Profesiones:</span></p>
+            <ul class="list">
+              <% if user[:professions].size > 0 %>
+                <% user[:professions].each do |profession| %>
                   <li>
-                    <%= responsibility.description %>
+                    <%= profession.name %>
                   </li>
                 <% end %>
               <% else %>
                 <li>
-                  Sin responsabilidades añadidas aun.
+                  Sin profesiones registradas aun.
                 </li>
               <% end %>
             </ul>
-          <% end %>
-        <% else %>
-          <li>
-            Sin lugares de trabajo registrados aun.
-          </li>
-        <% end %>
-      </ul>
+            <p><span class="profile-title">Lugares de trabajo:</span> </p>
+            <ul class="list">
+              <% if user[:jobplaces].size > 0 %>
+                <% user[:jobplaces].each do |jobplace| %>
+                  <li>
+                    <%= jobplace.name %> de <%= jobplace.city %>
+                  </li>
+                <% end %>
+              <% else %>
+                <li>
+                  Sin lugares de trabajo registrados aun.
+                </li>
+              <% end %>
+            </ul>
+            <p><span class="profile-title">Cargos:</span> </p>
+            <ul class="list">
+              <% if user[:jobs].size > 0 %>
+                <% user[:jobs].each do |job| %>
+                  <li>
+                    <%= job[:job].name %>
+                  </li>
+                  <p>
+                    <span class="profile-title">Funciones del cargo:</span>
+                  </p>
+                  <ul class="list">
+                    <% if job[:responsibilities].size > 0 %>
+                      <% job[:responsibilities].each do |responsibility| %>
+                        <li>
+                          <%= responsibility.description %>
+                        </li>
+                      <% end %>
+                    <% else %>
+                      <li>
+                        Sin responsabilidades añadidas aun.
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              <% else %>
+                <li>
+                  Sin lugares de trabajo registrados aun.
+                </li>
+              <% end %>
+              </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</section>
