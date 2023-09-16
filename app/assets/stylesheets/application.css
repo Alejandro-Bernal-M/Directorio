@@ -370,7 +370,7 @@ section a {
   color: var(--font-color-1);
 }
 
-.group-requests {
+.group-profiles-holder {
   width: 100%;
   height: auto;
   display: flex;
@@ -378,7 +378,7 @@ section a {
   gap: var(--space-1);
 }
 
-.group-request {
+.group-profile {
   width: 90%;
   height: auto;
   display: flex;
@@ -392,7 +392,7 @@ section a {
   gap: var(--space-1);
 }
 
-.group-request-user {
+.group-profile-user {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -401,18 +401,18 @@ section a {
   gap: var(--space-0);
 }
 
-.group-request-user-image {
+.group-profile-user-image {
   width: 50%;
   min-width: 200px;
   display: flex;
   justify-content: center;
 }
 
-.group-request-user-image img {
+.group-profile-user-image img {
   border-radius: 10px;
 }
 
-.group-request-user-info {
+.group-profile-user-info {
   width: 50%;
   min-width: 200px;
   display: flex;
@@ -423,13 +423,13 @@ section a {
   flex: 1;
 }
 
-.group-request-user-info p {
+.group-profile-user-info p {
   word-wrap: break-word;
   word-break: break-all;
   text-overflow: ellipsis;
 }
 
-.request-btns {
+.profile-btns {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
