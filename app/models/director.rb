@@ -3,6 +3,6 @@ class Director < ApplicationRecord
   has_many :groups
 
   validates :email, presence: true, uniqueness: true
-  validates :username, presence: true
+  validates :username, presence: true, uniqueness: true
 
 end

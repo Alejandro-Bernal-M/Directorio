@@ -44,3 +44,15 @@ addEventListener("direct-upload:initialize", event => {
   const element = document.getElementById(`direct-upload-${id}`)
   element.classList.add("direct-upload--complete")
  })
+
+ document.addEventListener('turbo:load', function() {
+   // Select the notice element
+   let noticeElement = document.querySelector('.notice');
+   let alertElement = document.querySelector('.alert');
+   setInterval(() => {
+      noticeElement = document.querySelector('.notice');
+      alertElement = document.querySelector('.alert');
+      alertElement.style.display = 'none';
+      noticeElement.style.display = 'none';
+  }, 10000);
+});

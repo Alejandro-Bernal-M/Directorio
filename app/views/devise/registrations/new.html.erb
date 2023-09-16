@@ -1,42 +1,53 @@
-<h2>Registrarse</h2>
+ <section class="register">
+  <h2>Registrarse</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :full_name, 'Nombre completo' %><br />
-    <%= f.text_field :full_name, autofocus: true, autocomplete: "name" %>
-  </div>
+    <div class="field">
+      <%= f.label :full_name, 'Nombre completo' %>
+      <%= f.text_field :full_name, autofocus: true, autocomplete: "name", required: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email, 'Correo eléctronico' %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="field">
+      <%= f.label :email, 'Correo eléctronico' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password, 'Contraseña' %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> caracteres minimo)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :cellphone, 'Número de teléfono' %>
+      <%= f.text_field :cellphone, autofocus: true, autocomplete: "cellphone", required: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, 'Confirmar contraseña' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password, 'Contraseña' %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> caracteres minimo)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", required: true %>
+    </div>
 
-  <div class="field">
-    <%= f.file_field :image,
-        placeholder: 'Subir imagen',
-        direct_upload: true
-        %>
-  </div>
-  
+    <div class="field">
+      <%= f.label :password_confirmation, 'Confirmar contraseña' %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Registrarse" %>
-  </div>
-<% end %>
+    <div class="field upload-image">
+      <%= f.label :image, 'Seleccione una imagen de perfil', class: 'custom-file-upload-label' %>
+      <%= f.file_field :image,
+          placeholder: 'Subir imagen',
+          direct_upload: true,
+          id: 'user_image',
+          class: 'custom-file-upload',
+          required: true
+          %>
+    </div>
+    
 
-<%= render "devise/shared/links" %>
+    <div class="actions">
+      <%= f.submit "Registrarse", class:'btn' %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</section>

@@ -13,3 +13,446 @@
  *= require_tree .
  *= require_self
  */
+ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-1);
+}
+
+:root {
+  --background-color-1: #e7e6e6;
+  --background-color-2: #313131;
+  --font-1: 'Inter', sans-serif;
+  --font-color-1: #e5e5e5;
+  --font-color-2: #313131;
+  --font-size-1: 1rem;
+  --font-size-2: 1.5rem;
+  --font-size-3: 2.5rem;
+  --space-0: 0.5rem;
+  --space-1: 1rem;
+  --space-2: 1.5rem;
+  --space-3: 2rem;
+  --space-4: 3rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+  --alert: #fd0101;
+  --notice: #01fd38;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: var(--background-color-1);
+}
+
+header {
+  height: 60px;
+  width: 100%;
+}
+
+.notice,
+.alert {
+  background-color: var(--background-color-2);
+  font-family: var(--font-1);
+  font-size: var(--font-size-1);
+}
+
+.notice {
+  color: var(--notice);
+}
+
+.alert {
+  color: var(--alert);
+}
+
+nav,
+footer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-3);
+  background-color: var(--background-color-2);
+  font-size: var(--font-size-1);
+}
+
+footer {
+  height: 50px;
+}
+
+nav a,
+footer a {
+  color: var(--font-color-1);
+  text-decoration: none;
+}
+
+#home-section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--space-6) 0;
+}
+
+#home-section h1 {
+  font-size: var(--font-size-3);
+  padding-top: var(--space-6);
+  color: var(--font-color-2);
+  text-align: center;
+  width: 100%;
+}
+
+.register{
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: var(--space-5) 0;
+  gap: var(--space-2);
+  color: var(--font-color-2);
+  padding: var(--space-5) 0;
+}
+
+.new_user {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  gap: var(--space-2)
+}
+
+.field {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--font-size-1);
+  gap: var(--space-1)
+}
+
+.field input:not([type="checkbox"]) {
+  height: 30px;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 400px;
+  padding: 6px 12px;
+}
+
+.remember {
+  gap:0;
+}
+
+.actions {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  border-radius: 6px;
+  background-color: var(--background-color-2);
+  color: var(--font-color-1);
+  min-height: 30px;
+  height: auto;
+  width: 130px;
+  cursor: pointer;
+}
+
+section a {
+  color: var(--font-color-2)
+}
+
+/* Hide the default file input button */
+.custom-file-upload {
+  display: none;
+}
+
+/* Style the label to act as the custom button */
+.custom-file-upload-label {
+  display: inline-block;
+  padding: 6px 12px; /* Padding for spacing */
+  background-color: var(--background-color-2); /* Background color */
+  color: var(--font-color-1); /* Text color */
+  cursor: pointer; /* Change cursor on hover */
+  border-radius: 6px;
+}
+
+.director-login {
+  display: flex;
+}
+
+#profile-section,
+#director-show,
+#group-show {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: var(--space-5) 0;
+  gap: var(--space-4);
+  color: var(--font-color-2)
+}
+
+#group-show {
+  padding: var(--space-1) 0;
+}
+
+.profile-info {
+  display: flex;
+  width: 80%;
+  height: auto;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: var(--space-1)
+}
+
+.profile-image {
+  width: 40%;
+  min-width: 300px;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.profile-image img {
+  border-radius: 40%;
+}
+
+.profile-data {
+  width: 50%;
+  min-width: 300px;
+  display:flex;
+  flex-direction: column;
+  gap: var(--space-0)
+}
+
+.profile-title {
+  font-weight: 700;
+}
+
+.list {
+  padding-left: var(--space-2);
+  list-style: circle;
+}
+
+.list li {
+  height: auto;
+  text-transform: capitalize;
+}
+
+.list-btn {
+  margin-top: var(--space-0)
+}
+
+.add-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4)
+}
+
+.add-info-divs-container {
+  display: flex;
+  width: 90%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: auto;
+  gap: var(--space-2)
+}
+
+.add-info-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  width: max(250px, 30%);
+  height: auto;
+  border: 1px solid var(--background-color-2);
+  border-radius: 6px;
+  padding: var(--space-1)
+}
+
+.add-new-info-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  justify-content: space-between;
+  flex: 1;
+}
+
+.field label {
+  text-align: center;
+}
+
+.select {
+  width: 100%;
+  height: 30px;
+  border-radius: 6px;
+}
+
+.select option {
+  padding: var(--space-2);
+}
+
+.responsibility-field {
+  gap: 0;
+  align-items: flex-start;
+}
+
+.requests {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3)
+}
+
+.request-all {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: var(--space-3)
+}
+
+.request-pending,
+.request-send {
+  width: max(45%, 300px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  gap: var(--space-1)
+}
+
+.groups-container {
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.group {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.group-header {
+  color: var(--font-color-1);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--space-0);
+  padding: var(--space-2);
+  border-radius: 10px;
+}
+
+.group-header a {
+  color: var(--font-color-1);
+}
+
+.group-profiles-holder {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.group-profile {
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--background-color-2);
+  padding: var(--space-2);
+  border-radius: 10px;
+  box-shadow: 0 2px 2px  1px var(--background-color-2);
+  margin: 0 auto;
+  gap: var(--space-1);
+}
+
+.group-profile-user {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  justify-content: center;
+  gap: var(--space-0);
+}
+
+.group-profile-user-image {
+  width: 50%;
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.group-profile-user-image img {
+  border-radius: 10px;
+  height: 200px;
+}
+
+.group-profile-user-info {
+  width: 50%;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-1);
+  flex: 1;
+  text-transform: capitalize;
+}
+
+.group-profile-user-info p {
+  word-wrap: break-word;
+  word-break: break-all;
+  text-overflow: ellipsis;
+}
+
+.profile-btns {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.group-header {
+  width: 90%;
+  height: auto;
+}
+
+.directory-image {
+  max-height: 300px;
+}
+
+.directory-profile-holder {
+  width: 85%;
+}

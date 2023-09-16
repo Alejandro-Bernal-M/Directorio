@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    director = Director.find_by(email: params[:email])
+    director = Director.find_by(username: params[:username])
     if director && director.authenticate(params[:password])
       # Log in the director and redirect to their profile or a desired page
       session[:director_id] = director.id
