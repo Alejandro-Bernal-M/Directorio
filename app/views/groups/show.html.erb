@@ -1,6 +1,7 @@
 <section id="group-show">
   <div class="group-header" style="background-color: <%= @group.color %>;">
     <h1 > Directorio de: <%= @group.name %> </h1>
+    <h2 > <%= @group.slogan %> </h2>
   </div>
   <div class="group-profiles-holder directory-profile-holder">
     <% @users_processed.each do |user| %>
@@ -23,7 +24,7 @@
                 <% end %>
               <% else %>
                 <li>
-                  Sin profesiones registradas aun.
+                  Sin profesiones registradas aún.
                 </li>
               <% end %>
             </ul>
@@ -37,7 +38,7 @@
                 <% end %>
               <% else %>
                 <li>
-                  Sin lugares de trabajo registrados aun.
+                  Sin lugares de trabajo registrados aún.
                 </li>
               <% end %>
             </ul>
@@ -60,14 +61,14 @@
                       <% end %>
                     <% else %>
                       <li>
-                        Sin responsabilidades añadidas aun.
+                        Sin responsabilidades añadidas aún.
                       </li>
                     <% end %>
                   </ul>
                 <% end %>
               <% else %>
                 <li>
-                  Sin lugares de trabajo registrados aun.
+                  Sin lugares de trabajo registrados aún.
                 </li>
               <% end %>
               </ul>
