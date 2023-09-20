@@ -1,6 +1,24 @@
 class UsersController < ApplicationController
   before_action :set_user unless :current_director
+  before_action :check_user, only: [:show]
   def index; end
+
+  def check_user
+    @user = User.find(params[:id])
+    directors = []
+    @requests = Request.where(user_id: @user.id)
+    @requests.each do |request|
+      group = Group.find(request.group_id)
+      directors.push(group.director)
+    end
+
+     @user.groups.each { |group| directors.push(group.director)}
+
+    unless current_user == @user || directors.include?(current_director)
+      flash[:notice] = 'No tienes acceso a este perfil'
+      return redirect_to root_path
+    end
+  end
 
   def show
     @user = User.find(params[:id])
