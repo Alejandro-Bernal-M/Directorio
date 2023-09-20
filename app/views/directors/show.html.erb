@@ -42,18 +42,18 @@
               <div class="group-profile">
                 <div class="group-profile-user">
                   <div class="group-profile-user-image">
-                    <%= cl_image_tag(request[:user].image.key, :width => 200, crop: :fill) if request[:user].image.attached? %>
+                    <%= cl_image_tag(profile[:user].image.key, :width => 200, crop: :fill) if profile[:user].image.attached? %>
                   </div>
                   <div class="group-profile-user-info">
                     <p><%= profile[:user].full_name %></p>
-                    <p><%= request[:user].email %></p>
-                    <p><%= request[:user].cellphone %></p>
-                    <%= link_to 'Ver perfil', user_path(request[:user].id) %>
+                    <p><%= profile[:user].email %></p>
+                    <p><%= profile[:user].cellphone %></p>
+                    <%= link_to 'Ver perfil', user_path(profile[:user].id) %>
                   </div>
                 </div>
                 <div class="profile-btns">
-                  <%= button_to 'Aceptar', groups_users_path(user_id: request[:user].id, request_id: request[:request_id], group_id: group[:group_id]), method: :create, class: 'btn' %>
-                  <%= button_to 'Rechazar', assignation_path(request_id: request[:request_id]), method: :delete, class: 'btn' %>
+                  <%= button_to 'Aceptar', groups_users_path(user_id: profile[:user].id, request_id: profile[:request_id], group_id: group[:group_id]), method: :create, class: 'btn' %>
+                  <%= button_to 'Rechazar', assignation_path(request_id: profile[:request_id]), method: :delete, class: 'btn' %>
                 </div>
               </div>
               <% end %>
