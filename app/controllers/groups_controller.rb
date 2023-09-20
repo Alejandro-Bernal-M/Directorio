@@ -4,6 +4,15 @@ class GroupsController < ApplicationController
   def check_logged
     unless current_director || current_user
       flash[:notice] = 'Inicia sesión primero'
+      return redirect_to root_path
+    end
+
+    @group = Group.find(params[:id])
+    @director = @group.director
+    @users = @group.users
+
+    unless current_director == @director || @users.include?(current_user)
+      flash[:notice] = 'No perteneces al grupo'
       redirect_to root_path
     end
   end
