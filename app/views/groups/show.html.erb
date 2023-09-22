@@ -2,6 +2,15 @@
   <div class="group-header" style="background-color: <%= @group.color %>;">
     <h1 > Directorio de: <%= @group.name %> </h1>
   </div>
+  <div class="search-bar-holder">
+    <select class="select-profession">
+      <option value='undefined'> Buscar por profesión </option>
+
+      <% @professions.map do |profession| %>
+        <option value="<%= profession.name %>"> <%= profession.name %></option >
+      <% end %>
+    </select>
+  </div>
   <div class="group-profiles-holder directory-profile-holder">
     <% @users_processed.each do |user| %>
       <div class="group-profile">
