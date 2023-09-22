@@ -21,6 +21,10 @@
         <option value="<%= job.name %>"> <%= job.name %></option >
       <% end %>
     </select>
+    <div class ="search-btns">
+      <button class="search-btn btn"> Buscar </button>
+      <button class="clean-btn btn"> Limpiar </button>
+    </div>
   </div>
   <div class="group-profiles-holder directory-profile-holder">
     <% @users_processed.each do |user| %>
