@@ -21,8 +21,6 @@ export default class extends Controller {
     
     selectJob.addEventListener('change', () => {
       job = selectJob.value
-      jobplace = selectJobplace.value
-      profession = selectProfession.value
     })
     
     searchBtn.addEventListener('click', () => {
@@ -33,6 +31,9 @@ export default class extends Controller {
       selectProfession.value = 'undefined'
       selectJobplace.value = 'undefined' 
       selectJob.value = 'undefined' 
+      job = 'undefined' 
+      jobplace = 'undefined' 
+      profession = 'undefined' 
     })
   }
 }
