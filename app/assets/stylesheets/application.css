@@ -468,3 +468,7 @@ section a {
   justify-content: center;
   gap: var(--space-1);
 }
+
+.search-results {
+  display: none;
+}

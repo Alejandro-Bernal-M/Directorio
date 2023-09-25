@@ -25,6 +25,7 @@
       <button class="search-btn btn"> Buscar </button>
       <button class="clean-btn btn"> Limpiar </button>
     </div>
+    <p class='search-results'> </p>
   </div>
   <div class="group-profiles-holder directory-profile-holder">
     <% @users_processed.each do |user| %>
@@ -38,7 +39,7 @@
             <p><span class="profile-title">Correo electrónico:</span>  <br /> <%= user[:user].email %> </P>
             <p><span class="profile-title">Número de contacto:</span>  <br /> <%= user[:user].cellphone %> </P>
             <p><span class="profile-title">Profesiones:</span></p>
-            <ul class="list">
+            <ul class="list profession ">
               <% if user[:professions].size > 0 %>
                 <% user[:professions].each do |profession| %>
                   <li>
