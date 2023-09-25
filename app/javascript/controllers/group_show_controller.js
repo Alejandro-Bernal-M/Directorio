@@ -9,6 +9,7 @@ export default class extends Controller {
     const cleanBtn = document.querySelector(".clean-btn")
     const professions = document.querySelectorAll(".profession")
     const jobplaces = document.querySelectorAll(".jobplace")
+    const jobs = document.querySelectorAll(".job")
     const searchResults = document.querySelector(".search-results")
     let profession, jobplace, job ;
 
@@ -53,12 +54,36 @@ export default class extends Controller {
         }
       });
     }
+    
+    function searchJobs(param){
+      if(param == undefined) {
+        return;
+      }
+      jobs.forEach(job => {
+        let filterChild = []
+        job.childNodes.forEach(child => {
+          if(child.localName == 'li'){
+            filterChild.push(child.innerText)
+          }})
+          for(let i = 0; i < filterChild.length ; i++){
+            if(filterChild[i].toLowerCase() == param.toLowerCase()){
+              job.parentElement.parentElement.parentElement.style.display = "flex"
+              break;
+            }else {
+              job.parentElement.parentElement.parentElement.style.display = "none"
+            }
+        }
+      });
+    }
 
     function clean(){
       professions.forEach( prof => {
         prof.parentElement.parentElement.parentElement.style.display = "flex"
       } )
       jobplaces.forEach( jobplace => {
+        jobplace.parentElement.parentElement.parentElement.style.display = "flex"
+      } )
+      jobs.forEach( jobplace => {
         jobplace.parentElement.parentElement.parentElement.style.display = "flex"
       } )
       searchResults.style.display = "none";
@@ -76,6 +101,7 @@ export default class extends Controller {
     
     selectJob.addEventListener('change', () => {
       job = selectJob.value
+      clean();
     })
     
     searchBtn.addEventListener('click', () => {
@@ -86,6 +112,10 @@ export default class extends Controller {
 
       if(jobplace != undefined){
         searchJobplaces(jobplace);
+      }
+      
+      if(job != undefined){
+        searchJobs(job);
       }
 
       const profiles = document.querySelectorAll('.group-profile');
@@ -104,8 +134,12 @@ export default class extends Controller {
         }, 2000)
       } else {
         searchResults.style.display = "block";
-        searchResults.innerText = `Se han encontrado: ${filteredProfiles.length} resultados`
+        searchResults.innerText = `Se han encontrado: ${filteredProfiles.length} resultado/s`
       }
+
+      selectProfession.value = undefined
+      selectJobplace.value = undefined 
+      selectJob.value = undefined 
     })
     
     cleanBtn.addEventListener('click', () => {
