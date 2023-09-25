@@ -1,6 +1,33 @@
-<section id="group-show">
+<section id="group-show" data-controller="group-show">
   <div class="group-header" style="background-color: <%= @group.color %>;">
     <h1 > Directorio de: <%= @group.name %> </h1>
+  </div>
+  <div class="search-bar-holder">
+    <div class="search-bars">
+      <select class="select-profession">
+        <option value='undefined'> Buscar por profesión </option>
+        <% @professions.map do |profession| %>
+          <option value="<%= profession.name %>"> <%= profession.name %></option >
+        <% end %>
+      </select>
+      <select class="select-jobplace">
+        <option value='undefined'> Buscar por lugar de trabajo </option>
+        <% @jobplaces.map do |jobplace| %>
+          <option value="<%= jobplace.name_and_city %>"> <%= jobplace.name_and_city %></option >
+        <% end %>
+      </select>
+      <select class="select-job">
+        <option value='undefined'> Buscar por cargo </option>
+        <% @jobs.map do |job| %>
+          <option value="<%= job.name %>"> <%= job.name %></option >
+        <% end %>
+      </select>
+    </div>
+    <div class ="search-btns">
+      <button class="search-btn btn"> Buscar </button>
+      <button class="clean-btn btn"> Limpiar </button>
+    </div>
+    <p class='search-results'> </p>
   </div>
   <div class="group-profiles-holder directory-profile-holder">
     <% @users_processed.each do |user| %>
@@ -14,7 +41,7 @@
             <p><span class="profile-title">Correo electrónico:</span>  <br /> <%= user[:user].email %> </P>
             <p><span class="profile-title">Número de contacto:</span>  <br /> <%= user[:user].cellphone %> </P>
             <p><span class="profile-title">Profesiones:</span></p>
-            <ul class="list">
+            <ul class="list profession ">
               <% if user[:professions].size > 0 %>
                 <% user[:professions].each do |profession| %>
                   <li>
@@ -28,7 +55,7 @@
               <% end %>
             </ul>
             <p><span class="profile-title">Lugares de trabajo:</span> </p>
-            <ul class="list">
+            <ul class="list jobplace">
               <% if user[:jobplaces].size > 0 %>
                 <% user[:jobplaces].each do |jobplace| %>
                   <li>
@@ -42,7 +69,7 @@
               <% end %>
             </ul>
             <p><span class="profile-title">Cargos:</span> </p>
-            <ul class="list">
+            <ul class="list job">
               <% if user[:jobs].size > 0 %>
                 <% user[:jobs].each do |job| %>
                   <li>

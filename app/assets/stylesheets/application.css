@@ -468,3 +468,28 @@ section a {
   justify-content: center;
   gap: var(--space-1);
 }
+
+.search-bar-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  width: 90%;
+}
+
+.search-bars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-0);
+  justify-content: center;
+}
+
+select {
+  height: 30px;
+  border: 1px solid var(--font-color-2);
+  border-radius: 10px;
+}
+
+.search-results {
+  display: none;
+}

@@ -21,6 +21,9 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.includes(:users).find(params[:id])
+    @professions = Profession.all
+    @jobplaces = Jobplace.all
+    @jobs = Job.all
     @director = @group.director
     @responsibilities = Responsibility.all
     @jobsusers = JobsUser.all
