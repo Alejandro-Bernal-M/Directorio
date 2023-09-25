@@ -105,7 +105,6 @@ export default class extends Controller {
     })
     
     searchBtn.addEventListener('click', () => {
-      console.log(profession, jobplace, job);
       if(profession != undefined){
         searchProfession(profession);
       }
@@ -128,13 +127,13 @@ export default class extends Controller {
 
       if (profession == undefined && jobplace == undefined && job == undefined) {
         searchResults.style.display = "block";
-        searchResults.innerText = `Seleccione un parametro de búsqueda`
+        searchResults.innerText = `Seleccione un parametro de búsqueda.`
         setTimeout(() => {
           searchResults.style.display = "none";
         }, 2000)
       } else {
         searchResults.style.display = "block";
-        searchResults.innerText = `Se han encontrado: ${filteredProfiles.length} resultado/s`
+        searchResults.innerText = `Se han encontrado: ${filteredProfiles.length} resultado/s.`
       }
 
       selectProfession.value = undefined

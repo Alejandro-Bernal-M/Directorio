@@ -3,24 +3,26 @@
     <h1 > Directorio de: <%= @group.name %> </h1>
   </div>
   <div class="search-bar-holder">
-    <select class="select-profession">
-      <option value='undefined'> Buscar por profesión </option>
-      <% @professions.map do |profession| %>
-        <option value="<%= profession.name %>"> <%= profession.name %></option >
-      <% end %>
-    </select>
-    <select class="select-jobplace">
-      <option value='undefined'> Buscar por lugar de trabajo </option>
-      <% @jobplaces.map do |jobplace| %>
-        <option value="<%= jobplace.name_and_city %>"> <%= jobplace.name_and_city %></option >
-      <% end %>
-    </select>
-    <select class="select-job">
-      <option value='undefined'> Buscar por cargo </option>
-      <% @jobs.map do |job| %>
-        <option value="<%= job.name %>"> <%= job.name %></option >
-      <% end %>
-    </select>
+    <div class="search-bars">
+      <select class="select-profession">
+        <option value='undefined'> Buscar por profesión </option>
+        <% @professions.map do |profession| %>
+          <option value="<%= profession.name %>"> <%= profession.name %></option >
+        <% end %>
+      </select>
+      <select class="select-jobplace">
+        <option value='undefined'> Buscar por lugar de trabajo </option>
+        <% @jobplaces.map do |jobplace| %>
+          <option value="<%= jobplace.name_and_city %>"> <%= jobplace.name_and_city %></option >
+        <% end %>
+      </select>
+      <select class="select-job">
+        <option value='undefined'> Buscar por cargo </option>
+        <% @jobs.map do |job| %>
+          <option value="<%= job.name %>"> <%= job.name %></option >
+        <% end %>
+      </select>
+    </div>
     <div class ="search-btns">
       <button class="search-btn btn"> Buscar </button>
       <button class="clean-btn btn"> Limpiar </button>
