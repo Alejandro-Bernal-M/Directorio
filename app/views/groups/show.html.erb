@@ -41,8 +41,10 @@
           </div>
           <div class="group-profile-user-info">
             <p><span class="profile-title">Nombre:</span> <br />  <%= user[:user].full_name %> </P>
-            <p><span class="profile-title">Correo electrónico:</span>  <br /> <%= user[:user].email %> </P>
-            <p><span class="profile-title">Número de contacto:</span>  <br /> <%= user[:user].cellphone %> </P>
+            <% if current_director  %>
+              <p><span class="profile-title">Correo electrónico:</span>  <br /> <%= user[:user].email %> </P>
+              <p><span class="profile-title">Número de contacto:</span>  <br /> <%= user[:user].cellphone %> </P>
+            <% end %>
             <p><span class="profile-title">Profesiones:</span></p>
             <ul class="list profession ">
               <% if user[:professions].size > 0 %>

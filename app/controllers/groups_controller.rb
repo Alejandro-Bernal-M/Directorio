@@ -7,7 +7,8 @@ class GroupsController < ApplicationController
       return redirect_to root_path
     end
 
-    @group = Group.find(params[:group_id])
+    @group = Group.find(params[:group_id]) if current_director
+    @group = Group.find(params[:id]) if current_user
     @director = @group.director
     @users = @group.users
 
@@ -20,7 +21,8 @@ class GroupsController < ApplicationController
   def index; end
 
   def show
-    @group = Group.includes(:users).find(params[:group_id])
+    @group = Group.includes(:users).find(params[:group_id]) if current_director
+    @group = Group.includes(:users).find(params[:id]) if current_user
     @professions = Profession.all
     @jobplaces = Jobplace.all
     @jobs = Job.all
