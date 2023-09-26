@@ -1,6 +1,6 @@
 <section class="register">
   <h1>Actualizando el grupo</h1>
-  <%= button_to 'Atrás', :back, class: 'btn' %>
+  <%= button_to 'Atrás', :back, class: 'btn', method: :get %>
   <% if @group.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@group.errors.count, "errores") %> prohiben actualizar el grupo:</h2>
@@ -26,6 +26,16 @@
      <div class="field">
       <%= f.label :color %>
       <%= f.color_field :color %>
+    </div>
+
+    <div class="field upload-image">
+      <%= f.label :image, 'Seleccione un leaderboard banner para el grupo (728 x 90 pixeles)', class: 'custom-file-upload-label' %>
+      <%= f.file_field :image,
+          placeholder: 'Subir imagen',
+          direct_upload: true,
+          id: 'group-image',
+          class: 'btn'
+      %>
     </div>
 
       <%= f.hidden_field :director_id, value: current_director.id %>

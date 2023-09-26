@@ -7,4 +7,6 @@ class Group < ApplicationRecord
   validates :name, presence: { message: "El grupo debe tener nombre" }
   validates :color, presence: { message: "El grupo debe tener color" }
   validates :slogan, presence: { message: "El grupo debe tener slogan" }
+
+  has_one_attached :image
 end

@@ -28,6 +28,16 @@
       <%= f.color_field :color, value: "#FFFFFF" %>
     </div>
 
+    <div class="field upload-image">
+      <%= f.label :image, 'Seleccione un leaderboard banner para el grupo (728 x 90 pixeles)', class: 'custom-file-upload-label' %>
+      <%= f.file_field :image,
+          placeholder: 'Subir imagen',
+          direct_upload: true,
+          id: 'group-image',
+          class: 'custom-file-upload'
+      %>
+    </div>
+
       <%= f.hidden_field :director_id, value: current_director.id %>
 
     <div class="actions">

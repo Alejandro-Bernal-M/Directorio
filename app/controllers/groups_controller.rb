@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
       return redirect_to root_path
     end
 
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:group_id])
     @director = @group.director
     @users = @group.users
 
@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
   def index; end
 
   def show
-    @group = Group.includes(:users).find(params[:id])
+    @group = Group.includes(:users).find(params[:group_id])
     @professions = Profession.all
     @jobplaces = Jobplace.all
     @jobs = Job.all
@@ -76,6 +76,6 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :slogan, :color, :director_id)
+    params.require(:group).permit(:name, :slogan, :color, :director_id, :image)
   end
 end

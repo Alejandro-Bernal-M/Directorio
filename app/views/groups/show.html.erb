@@ -2,6 +2,9 @@
   <div class="group-header" style="background-color: <%= @group.color %>;">
     <h1 > Directorio de: <%= @group.name %> </h1>
   </div>
+  <div class="banner-container">
+    <%= cl_image_tag(@group.image.key, :crop => :fill) if @group.image.attached? %>
+  </div>
   <div class="search-bar-holder">
     <div class="search-bars">
       <select class="select-profession">

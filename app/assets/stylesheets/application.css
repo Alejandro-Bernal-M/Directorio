@@ -541,3 +541,13 @@ select {
 .search-results {
   display: none;
 }
+
+.banner-container {
+  max-width: 80%; /* Set the maximum width to 80% */
+  margin: 0 auto; /* Center the image horizontally, if needed */
+}
+
+.banner-container img {
+  width: 100%;
+  border-radius: 10px;
+}
