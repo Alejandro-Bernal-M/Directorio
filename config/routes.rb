@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :directors, only: [:show]
   resources :groups
 
+  resources :superusers
+
   resources :users, only: [:show, :create, :update, :destroy] do
     resources :jobs_users, only: [:new, :create, :destroy] do
       resources :responsibilities, only: [:index, :create, :update, :destroy ]
