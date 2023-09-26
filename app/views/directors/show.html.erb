@@ -2,6 +2,7 @@
   <h2>Hola <%= @director.username %></h2>
   <div class= "groups-container">
     <p><span class="profile-title">Estos son tus grupos:</span> </p>
+    <%= button_to 'Crear grupo', new_group_path, class: 'btn', method: :get  %>
     <div class="group">
       <% if @groups_with_requests.size > 0 %>
         <% @groups_with_requests.each do |group| %>
