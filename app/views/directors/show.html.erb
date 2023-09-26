@@ -11,6 +11,9 @@
             <h3> <%= group[:group_name] %> </h3>
             <p> <%= group[:group_slogan] %> </p>
             <%= link_to 'Directorio del grupo', group_path(group) %>
+            <div>
+              <%= button_to "Editar", edit_group_path(id: group[:group_id]), method: :get, class: 'btn' %>
+            </div>
           </div>
           <div class="group-profiles-holder">
             <p><span class="profile-title">Miembros:</span></p>
