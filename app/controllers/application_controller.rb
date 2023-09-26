@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, unless: :root_path || current_director
   before_action :update_allowed_parameters, if: :devise_controller?
   before_action :set_user, unless: :new_user_session_path 
+  before_action :super_user?
 
   def set_user
     unless current_user
@@ -15,6 +16,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(_resource)
     root_path
   end
+
 
   protected 
 
@@ -28,5 +30,14 @@ class ApplicationController < ActionController::Base
   def update_allowed_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name, :image, :cellphone, :email, :password, :password_confirmation])
     devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :image, :cellphone, :email, :password, :password_confirmation, :current_password])
+  end
+
+  def super_user?
+    @super_users = ['alejandrober']
+    if current_director &&  @super_users.include?(current_director.username)
+      @super_user = true
+    else
+      @super_user = false
+    end
   end
 end

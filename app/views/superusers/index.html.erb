@@ -1,0 +1,45 @@
+<section id="super-section" >
+  <h1>Hola <%= current_director.username %></h1>
+    
+  <%= form_for(:director, url: directors_path, html: {class: "add-new-info-form"}) do |f| %>
+    <div class="field">
+      <%= f.label :username, 'Nombre de usuario'%>
+      <%= f.text_field :username %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email, 'Correo electrónico'%>
+      <%= f.email_field :email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, 'Contraseña'%>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, 'Confirmar contraseña'%>
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <%= f.submit 'Crear director', class: 'btn' %>
+  <% end %>
+  <h2> Lista de directores: </h2>
+  <ul class="directors-list">
+    <% if @directors.size - @super_users.size  > 0 %>
+      <% @directors.map do |director| %>
+        <% unless @super_users.include?(director.username) %>
+          <li >
+            <p>Nombre de usuario:</p>
+            <p><%= director.username %></p>
+            <p>Correo: </p>
+            <p><%= director.email %></p>
+            <%= button_to 'Eliminar', director_path(director), method: :delete, class: 'btn' %>
+          </li> 
+        <% end %>
+      <% end %>
+    <% else %>
+      <li> No hay directores aún </li>
+    <% end %>
+  </ul>
+</section>
