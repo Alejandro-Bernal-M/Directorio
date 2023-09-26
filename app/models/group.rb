@@ -4,5 +4,7 @@ class Group < ApplicationRecord
   has_and_belongs_to_many :users
 
   has_many :requests
-  validates :name, presence: true
+  validates :name, presence: { message: "El grupo debe tener nombre" }
+  validates :color, presence: { message: "El grupo debe tener color" }
+  validates :slogan, presence: { message: "El grupo debe tener slogan" }
 end
