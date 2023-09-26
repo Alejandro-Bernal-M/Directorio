@@ -2,6 +2,9 @@
   <div class="group-header" style="background-color: <%= @group.color %>;">
     <h1 > Directorio de: <%= @group.name %> </h1>
   </div>
+  <div class="banner-container">
+    <%= cl_image_tag(@group.image.key, :crop => :fill) if @group.image.attached? %>
+  </div>
   <div class="search-bar-holder">
     <div class="search-bars">
       <select class="select-profession">
@@ -38,8 +41,10 @@
           </div>
           <div class="group-profile-user-info">
             <p><span class="profile-title">Nombre:</span> <br />  <%= user[:user].full_name %> </P>
-            <p><span class="profile-title">Correo electrónico:</span>  <br /> <%= user[:user].email %> </P>
-            <p><span class="profile-title">Número de contacto:</span>  <br /> <%= user[:user].cellphone %> </P>
+            <% if current_director == @director  %>
+              <p><span class="profile-title">Correo electrónico:</span>  <br /> <%= user[:user].email %> </P>
+              <p><span class="profile-title">Número de contacto:</span>  <br /> <%= user[:user].cellphone %> </P>
+            <% end %>
             <p><span class="profile-title">Profesiones:</span></p>
             <ul class="list profession ">
               <% if user[:professions].size > 0 %>

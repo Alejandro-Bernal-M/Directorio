@@ -1,0 +1,47 @@
+<section class="register">
+  <h1>Actualizando el grupo</h1>
+  <%= button_to 'Atrás', :back, class: 'btn', method: :get %>
+  <% if @group.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@group.errors.count, "errores") %> prohiben actualizar el grupo:</h2>
+
+    <ul>
+      <% @group.errors.full_messages.each do |message| %>
+        <li><%= message.split(' ', 2).second %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+  <%= form_for(:group, url: group_path(@group), local: true, method: :patch, html: { class: 'new_user' }) do |f| %>
+    <div class="field">
+      <%= f.label :name, 'Nombre del grupo' %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :slogan, 'Slogan del grupo' %>
+      <%= f.text_field :slogan %>
+    </div>
+
+     <div class="field">
+      <%= f.label :color %>
+      <%= f.color_field :color %>
+    </div>
+
+    <div class="field upload-image">
+      <%= f.label :image, 'Seleccione un leaderboard banner para el grupo (728 x 90 pixeles)', class: 'custom-file-upload-label' %>
+      <%= f.file_field :image,
+          placeholder: 'Subir imagen',
+          direct_upload: true,
+          id: 'group-image',
+          class: 'btn'
+      %>
+    </div>
+
+      <%= f.hidden_field :director_id, value: current_director.id %>
+
+    <div class="actions">
+      <%= f.submit 'Actualizar', class: 'btn' %>
+    </div>
+  <% end %>
+</section>

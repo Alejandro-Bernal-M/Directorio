@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :directors, only: [:show]
-  resources :groups, only: [:show]
+  resources :groups
 
   resources :users, only: [:show, :create, :update, :destroy] do
     resources :jobs_users, only: [:new, :create, :destroy] do

@@ -4,7 +4,7 @@ class DirectorsController < ApplicationController
   def show
     @users = User.all
     @director = Director.find(params[:id])
-    @groups = Group.where(director_id: @director.id)
+    @groups = Group.where(director_id: @director.id).order(:created_at)
     @groups_with_requests = @groups.map do |group|
       {
         group_members: group.users,
