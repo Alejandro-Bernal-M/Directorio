@@ -2,7 +2,9 @@ class SuperusersController < ApplicationController
   before_action :check_super
 
 
-  def index; end
+  def index
+    @directors = Director.all.includes(:groups).order(:created_at)
+  end
 
   private
 
