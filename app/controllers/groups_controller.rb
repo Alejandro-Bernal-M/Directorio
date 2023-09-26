@@ -63,6 +63,16 @@ class GroupsController < ApplicationController
     end
   end
 
+  def destroy
+    @group = Group.find(params[:id])
+    
+    if @group.destroy
+      flash[:notice] = 'Grupo eliminado'
+    else 
+      flash[:alert] = 'Error eliminando el grupo'
+    end 
+  end
+
   private
 
   def group_params

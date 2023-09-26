@@ -348,6 +348,47 @@ section a {
   gap: var(--space-1)
 }
 
+.hidden {
+  display: none;
+}
+
+.popup {
+  display: flex;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+  background-color: rgba(31,31,31,0.7);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  height: 300px;
+  width: 80%;
+  max-width: 400px;
+  background-color: var(--background-color-1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: var(--space-2);
+}
+
+.popup-content h2 {
+  text-align: center;
+}
+
+.poup-btns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-0);
+}
+
 .groups-container {
   width: 80%;
   height: auto;
@@ -376,6 +417,13 @@ section a {
 
 .group-header a {
   color: var(--font-color-1);
+}
+
+.group-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-0);
 }
 
 .group-profiles-holder {

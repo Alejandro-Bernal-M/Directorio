@@ -1,4 +1,13 @@
-<section id="director-show">
+<section id="director-show" data-controller="director-show" >
+  <div id="delete-group-popup", class="hidden">
+    <div class="popup-content">
+      <h2>¿Seguro que desea eliminar el grupo?</h2>
+      <div class="poup-btns">
+        <button id="cancel-delete" class="btn">Cancelar</button>
+        <button id="confirm-delete" class="btn">eliminar</button>
+      </div>
+    </div>
+  </div>
   <h2>Hola <%= @director.username %></h2>
   <div class= "groups-container">
     <p><span class="profile-title">Estos son tus grupos:</span> </p>
@@ -11,8 +20,9 @@
             <h3> <%= group[:group_name] %> </h3>
             <p> <%= group[:group_slogan] %> </p>
             <%= link_to 'Directorio del grupo', group_path(group) %>
-            <div>
+            <div class= "group-btns">
               <%= button_to "Editar", edit_group_path(id: group[:group_id]), method: :get, class: 'btn' %>
+              <button class="btn delete-group" id=<%=group[:group_id] %>> Eliminar grupo </button>
             </div>
           </div>
           <div class="group-profiles-holder">
