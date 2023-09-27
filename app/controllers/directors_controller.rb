@@ -1,5 +1,5 @@
 class DirectorsController < ApplicationController
-  before_action :authenticate_director
+  before_action :authenticate_director, only: [:show]
 
   def show
     @users = User.all
@@ -18,6 +18,8 @@ class DirectorsController < ApplicationController
   # rescue ActiveRecord::RecordNotFound
   #   render html: '<h1>Not found</h1>'.html_safe
   end
+
+  def new; end
 
   def create
     @director = Director.new(director_params)
