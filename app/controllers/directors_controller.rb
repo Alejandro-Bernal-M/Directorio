@@ -25,7 +25,7 @@ class DirectorsController < ApplicationController
     @director = Director.new(director_params)
 
     if @director.save 
-      redirect_to superusers_path, notice: "Director creado con exito"
+      redirect_to director_path(current_director), notice: "Director creado con exito"
     else
       redirect_to superusers_path, alert: "Error creando el director"
     end
