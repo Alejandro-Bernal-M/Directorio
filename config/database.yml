@@ -86,3 +86,4 @@ production:
   database: Directorio_production
   username: Directorio
   password: <%= ENV["DIRECTORIO_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
