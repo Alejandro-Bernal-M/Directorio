@@ -56,6 +56,10 @@ header {
   width: 100%;
 }
 
+h1 {
+  text-align: center;
+}
+
 .notice,
 .alert {
   background-color: var(--background-color-2);
