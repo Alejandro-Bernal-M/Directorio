@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 
   def super_user?
     @super_users = ['alejandrober']
-    if current_director &&  current_director.username == 'alejandrober'
+    if current_director &&  @super_users.include?(current_director.username)
       @super_user = true
     else
       @super_user = false
