@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_02_185755) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_02_193200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_02_185755) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "directors_plans", id: false, force: :cascade do |t|
+    t.bigint "director_id"
+    t.bigint "plan_id"
+    t.index ["director_id", "plan_id"], name: "index_directors_plans_on_director_id_and_plan_id", unique: true
+    t.index ["director_id"], name: "index_directors_plans_on_director_id"
+    t.index ["plan_id"], name: "index_directors_plans_on_plan_id"
   end
 
   create_table "groups", force: :cascade do |t|
