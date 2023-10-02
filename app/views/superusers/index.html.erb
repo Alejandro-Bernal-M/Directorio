@@ -1,7 +1,47 @@
 <section id="super-section" >
   <h1>Hola <%= current_director.username %></h1>
+
+  <%= form_for(:plan, url: plans_path, html: {class: "add-new-info-form"}) do |f| %>
+    <h2> Crear Plan</h2>
+    <div class="field">
+      <%= f.label :name, 'Nombre del plan'%>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :number_of_groups, 'Número de grupos'%>
+      <%= f.number_field :number_of_groups %>
+    </div>
+
+    <div class="field">
+      <%= f.label :number_of_users_per_group, 'Número de usuarios por grupo'%>
+      <%= f.number_field :number_of_users_per_group %>
+    </div>
+
+    <%= f.submit 'Crear Plan', class: 'btn' %>
+  <% end %>
     
+  <h2> Lista de planes: </h2>
+  <ul class="directors-list">
+    <% if @plans.size > 0 %>
+      <% @plans.map do |plan| %>
+          <li >
+            <p>Nombre del plan:</p>
+            <p><%= plan.name %></p>
+            <p>Número de grupos: </p>
+            <p><%= plan.number_of_groups %></p>
+            <p>Número de usuarios por grupo: </p>
+            <p><%= plan.number_of_users_per_group %></p>
+            <%= button_to 'Eliminar', plan_path(plan), method: :delete, class: 'btn' %>
+          </li> 
+      <% end %>
+    <% else %>
+      <li> No hay planes aún </li>
+    <% end %>
+  </ul>
+
   <%= form_for(:director, url: directors_path, html: {class: "add-new-info-form"}) do |f| %>
+    <h2> Crear Director </h2>
     <div class="field">
       <%= f.label :username, 'Nombre de usuario'%>
       <%= f.text_field :username %>
