@@ -306,6 +306,11 @@ section a {
   gap: var(--space-1);
   justify-content: space-between;
   flex: 1;
+  padding: var(--space-5);
+}
+
+.add-new-info-form a {
+  color: var(--font-color-2);
 }
 
 .field label {
