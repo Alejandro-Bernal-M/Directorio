@@ -4,6 +4,7 @@ class SuperusersController < ApplicationController
 
   def index
     @directors = Director.all.includes(:groups).order(:created_at)
+    @plans = Plan.all
   end
 
   private
