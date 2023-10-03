@@ -47,6 +47,6 @@ class PlansController < ApplicationController
   protected
 
   def plan_params
-    params.require(:plan).permit(:name, :number_of_groups, :number_of_users_per_group, :color)
+    params.require(:plan).permit(:name, :number_of_groups, :number_of_users_per_group, :color, :price)
   end
 end

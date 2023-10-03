@@ -19,6 +19,11 @@
     </div>
 
     <div class="field">
+      <%= f.label :price, 'Precio'%>
+      <%= f.number_field :price %>
+    </div>
+
+    <div class="field">
       <%= f.label :color, 'Color'%>
       <%= f.color_field :color %>
     </div>
@@ -38,6 +43,8 @@
             <p><%= plan.number_of_groups %></p>
             <p><span class="profile-title">Número de usuarios por grupo:</span> </p>
             <p><%= plan.number_of_users_per_group %></p>
+            <p><span class="profile-title">Precio:</span> </p>
+            <p>$<%= plan.price %></p>
             <%= button_to 'Eliminar', plan_path(plan), method: :delete, class: 'btn' %>
             <%= link_to 'Editar', edit_plan_path(plan) %>
           </li> 
