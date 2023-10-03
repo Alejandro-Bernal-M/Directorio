@@ -581,3 +581,9 @@ select {
   padding: var(--space-2);
   border-radius: 10px;
 }
+
+.plan-color {
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+}

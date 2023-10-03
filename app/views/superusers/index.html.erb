@@ -30,12 +30,13 @@
   <ul class="directors-list">
     <% if @plans.size > 0 %>
       <% @plans.map do |plan| %>
-          <li >
-            <p>Nombre del plan:</p>
+        <li >
+            <div style="background-color:<%= plan.color %>;" class="plan-color"></div>
+            <p><span class="profile-title">Nombre del plan:</span></p>
             <p><%= plan.name %></p>
-            <p>Número de grupos: </p>
+            <p><span class="profile-title">Número de grupos:</span> </p>
             <p><%= plan.number_of_groups %></p>
-            <p>Número de usuarios por grupo: </p>
+            <p><span class="profile-title">Número de usuarios por grupo:</span> </p>
             <p><%= plan.number_of_users_per_group %></p>
             <%= button_to 'Eliminar', plan_path(plan), method: :delete, class: 'btn' %>
           </li> 
