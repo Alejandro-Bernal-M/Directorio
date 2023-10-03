@@ -2,6 +2,7 @@ class DirectorsController < ApplicationController
   before_action :authenticate_director, only: [:show]
 
   def show
+    @plans = Plan.all
     @users = User.all
     @director = Director.find(params[:id])
     @groups = Group.where(director_id: @director.id).order(:created_at)

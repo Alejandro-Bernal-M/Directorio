@@ -10,6 +10,32 @@
   </div>
   <h2>Hola <%= @director.username %></h2>
   <%= link_to 'Editar información', edit_director_path(current_director) %>
+  <div class="plan">
+  <% if !@director.plan %>
+    <p>Aún no tienes un plan.</p>
+    <ul>
+      <% if @plans.size > 0 %>
+        <% @plans.each do |plan| %>
+          <li class="plan-show">
+            <p><span class="profile-title">Nombre del plan:</span></p>
+            <p><%= plan.name %></p>
+            <p><span class="profile-title">Número de grupos:</span> </p>
+            <p><%= plan.number_of_groups %></p>
+            <p><span class="profile-title">Número de usuarios por grupo:</span> </p>
+            <p><%= plan.number_of_users_per_group %></p>
+            <p><span class="profile-title">Precio:</span> </p>
+            <p>$<%= plan.price %></p>
+          </li>
+        <% end %>
+      <% else %>
+        <li>
+          Sin planes para elegir.
+        </li>
+      <% end %>
+    </ul>
+  <% end %> 
+</div>
+
   <div class= "groups-container">
     <p><span class="profile-title">Estos son tus grupos:</span> </p>
     <%= button_to 'Crear grupo', new_group_path, class: 'btn', method: :get  %>
