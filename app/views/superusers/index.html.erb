@@ -81,6 +81,8 @@
             <p><%= director.username %></p>
             <p>Correo: </p>
             <p><%= director.email %></p>
+            <p>Plan: </p>
+            <p><%= director.plan || 'sin plan' %></p>
             <%= link_to 'Editar', edit_director_path(director) %>
             <%= button_to 'Eliminar', director_path(director), method: :delete, class: 'btn' %>
           </li> 
