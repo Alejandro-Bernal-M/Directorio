@@ -19,7 +19,15 @@ class PlansController < ApplicationController
 
   end
 
-  def destroy; end
+  def destroy
+    @plan = Plan.find(params[:id])
+    
+    if @plan.destroy
+      redirect_to superusers_path, notice: "Plan eliminado con exito"
+    else
+      redirect_to superusers_path, alert: "Error eliminando el plan"
+    end
+  end
 
   def update; end
 
