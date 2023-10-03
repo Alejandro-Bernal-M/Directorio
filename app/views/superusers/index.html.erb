@@ -18,6 +18,11 @@
       <%= f.number_field :number_of_users_per_group %>
     </div>
 
+    <div class="field">
+      <%= f.label :color, 'Color'%>
+      <%= f.color_field :color %>
+    </div>
+
     <%= f.submit 'Crear Plan', class: 'btn' %>
   <% end %>
     
