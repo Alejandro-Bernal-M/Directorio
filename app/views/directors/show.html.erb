@@ -9,6 +9,7 @@
     </div>
   </div>
   <h2>Hola <%= @director.username %></h2>
+  <%= link_to 'Editar información', edit_director_path(current_director) %>
   <div class= "groups-container">
     <p><span class="profile-title">Estos son tus grupos:</span> </p>
     <%= button_to 'Crear grupo', new_group_path, class: 'btn', method: :get  %>

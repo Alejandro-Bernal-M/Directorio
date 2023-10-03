@@ -27,7 +27,7 @@ class DirectorsController < ApplicationController
     if @director.save 
       redirect_to director_path(current_director), notice: "Director creado con exito"
     else
-      redirect_to superusers_path, alert: "Error creando el director"
+      redirect_to director_path(current_director), alert: "Error creando el director"
     end
   end
   
@@ -38,6 +38,20 @@ class DirectorsController < ApplicationController
       redirect_to superusers_path, notice: "Director eliminado con exito"
     else
       redirect_to superusers_path, alert: "Error eliminando el director"
+    end
+  end
+
+  def edit
+    @director = Director.find(params[:id])
+  end
+
+  def update
+    @director = Director.find(params[:id])
+
+    if @director.update(director_params)
+      redirect_to director_path(current_director), notice: "Director actualizado con exito"
+    else
+      redirect_to director_path(current_director), alert: "Error actualizando el director"
     end
   end
 
