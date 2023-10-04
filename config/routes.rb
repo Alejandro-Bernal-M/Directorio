@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :directors
+  resources :directors do
+    post :assign, to: "assigns#assign", as: "assignplan"
+  end
   resources :groups
 
   resources :superusers
@@ -26,7 +28,7 @@ Rails.application.routes.draw do
   resources :requests
   resources :assignations, only: [:destroy]
   resources :groups_users, only: [:create, :destroy]
-  resources :plans
+  resources :plans 
 
   get "*path", to: "home#index"
 end
