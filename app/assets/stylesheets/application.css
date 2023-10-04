@@ -587,3 +587,27 @@ select {
   height: 40px;
   border-radius: 20px;
 }
+
+.plan {
+  text-align: center;
+}
+
+.plans-form {
+  width: 100%;
+  height: auto;
+}
+
+.plans-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.plan-label {
+  width: 30vw;
+  min-width: 200px;
+  height: 300px;
+}
