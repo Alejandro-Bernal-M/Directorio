@@ -152,6 +152,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_204625) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "directors_plans", "plans", on_delete: :cascade
   add_foreign_key "groups", "directors"
   add_foreign_key "groups_users", "groups"
   add_foreign_key "groups_users", "users"

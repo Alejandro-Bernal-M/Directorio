@@ -13,27 +13,32 @@
   <div class="plan">
   <% if !@director.plan %>
     <p>Aún no tienes un plan.</p>
-    <ul>
-      <% if @plans.size > 0 %>
-        <% @plans.each do |plan| %>
-          <li class="plan-show">
-            <p><span class="profile-title">Nombre del plan:</span></p>
-            <p><%= plan.name %></p>
-            <p><span class="profile-title">Número de grupos:</span> </p>
-            <p><%= plan.number_of_groups %></p>
-            <p><span class="profile-title">Número de usuarios por grupo:</span> </p>
-            <p><%= plan.number_of_users_per_group %></p>
-            <p><span class="profile-title">Precio:</span> </p>
-            <p>$<%= plan.price %></p>
-          </li>
-        <% end %>
-      <% else %>
-        <li>
-          Sin planes para elegir.
-        </li>
-      <% end %>
-    </ul>
+  <% else %>
+    <p> su plan actual es: <%= @director.plan.name %> </p>
   <% end %> 
+  <% if @plans.size > 0 %>
+      <%= form_with( url: director_assignplan_path(current_director), method: :post) do |f| %>
+        <% @plans.each do |plan| %>
+        <label class= 'plan-label'>
+        <p><span class="profile-title">Nombre del plan:</span></p>
+        <p><%= plan.name %></p>
+        <p><span class="profile-title">Número de grupos:</span> </p>
+        <p><%= plan.number_of_groups %></p>
+        <p><span class="profile-title">Número de usuarios por grupo:</span> </p>
+        <p><%= plan.number_of_users_per_group %></p>
+        <p><span class="profile-title">Precio:</span> </p>
+        <p>$<%= plan.price %></p>
+        <%= f.radio_button :selected_plan_id, plan.id %>
+        </label>
+        <% end %>
+        
+        <%= f.submit "Elegir plan" %>
+       <% end %>
+      <% else %>
+      <p>
+       Sin planes para elegir.
+      </p>
+      <% end %>
 </div>
 
   <div class= "groups-container">
