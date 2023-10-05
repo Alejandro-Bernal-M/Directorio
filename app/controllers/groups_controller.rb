@@ -31,6 +31,7 @@ class GroupsController < ApplicationController
     @jobsusers = JobsUser.all
     @users = @group.users
     @users_processed = @users.map {|user| {user: user, jobs: user.jobs.map{|job| {job: job, responsibilities: @responsibilities.where(jobs_user_id: @jobsusers.where(job_id: job.id, user_id: user.id))}}, professions: user.professions,  jobplaces: user.jobplaces }}
+    @max_number_of_users = @director.plan.number_of_users_per_group
   end
 
   def new
