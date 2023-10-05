@@ -21,6 +21,7 @@
     <div class="plans-container">
       <% @plans.each do |plan| %>
         <label class="plan-label">
+          <div class="plan-style" style="background-color:<%= plan.color %>; color: white; "><%= plan.name %></div>
           <div class="plan-div">
             <p><span class="profile-title">Nombre del plan:</span></p>
             <p><%= plan.name %></p>
@@ -36,7 +37,7 @@
       <% end %>
     </div>
   
-    <%= f.submit "Elegir plan" %>
+    <%= f.submit "Elegir plan", class: 'btn' %>
   <% end %>
   
       <% else %>
