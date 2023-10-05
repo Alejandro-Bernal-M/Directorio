@@ -9,9 +9,9 @@ class PlansController < ApplicationController
       @plan = Plan.new(plan_params)
 
       if @plan.save 
-        redirect_to superuser_path(current_director), notice: "Plan creado con exito"
+        redirect_to superusers_path, notice: "Plan creado con exito"
       else
-        redirect_to superuser_path(current_director), alert: "Error creando el plan"
+        redirect_to superusers_path, alert: "Error creando el plan"
       end
     else 
       redirect_to root_path, alert: "Error de autenticación"
@@ -23,9 +23,9 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
     
     if @plan.destroy
-      redirect_to superuser_path(current_director), notice: "Plan eliminado con exito"
+      redirect_to superuser_paths, notice: "Plan eliminado con exito"
     else
-      redirect_to superuser_path(current_director), alert: "Error eliminando el plan"
+      redirect_to superuser_paths, alert: "Error eliminando el plan"
     end
   end
 
@@ -37,7 +37,7 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
     respond_to do |format|
       if @plan.update(plan_params)
-        format.html{redirect_to superuser_path(current_director), notice: 'Plan actualizado'}
+        format.html{redirect_to superusers_path, notice: 'Plan actualizado'}
       else
         format.html{ render :edit, status: :unprocessable_entity}
       end
