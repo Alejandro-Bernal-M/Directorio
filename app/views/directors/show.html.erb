@@ -53,71 +53,73 @@
       <%= button_to 'Crear grupo', new_group_path, class: 'btn', method: :get  %>
       <div class="group">
         <% if @groups_with_requests.size > 0 %>
-          <% @groups_with_requests.each do |group| %>
-            <p><span class="profile-title">Grupo:</span></p>
-              <div style="background-color:<%= group[:group_color]  %>; " class="group-header">
-              <h3> <%= group[:group_name] %> </h3>
-              <p> <%= group[:group_slogan] %> </p>
-              <%= link_to 'Directorio del grupo', group_path(group) %>
-              <div class= "group-btns">
-                <%= button_to "Editar", edit_group_path(id: group[:group_id]), method: :get, class: 'btn' %>
-                <button class="btn delete-group" id=<%=group[:group_id] %>> Eliminar grupo </button>
+        <% @groups_with_requests.each_with_index do |group, index| %>
+            <% if index < @max_number_of_groups %>
+              <p><span class="profile-title">Grupo:</span></p>
+                <div style="background-color:<%= group[:group_color]  %>; " class="group-header">
+                <h3> <%= group[:group_name] %> </h3>
+                <p> <%= group[:group_slogan] %> </p>
+                <%= link_to 'Directorio del grupo', group_path(group) %>
+                <div class= "group-btns">
+                  <%= button_to "Editar", edit_group_path(id: group[:group_id]), method: :get, class: 'btn' %>
+                  <button class="btn delete-group" id=<%=group[:group_id] %>> Eliminar grupo </button>
+                </div>
               </div>
-            </div>
-            <div class="group-profiles-holder">
-              <p><span class="profile-title">Miembros:</span></p>
-              <p><span class="profile-title">Cada grupo puede tener:</span> <%= @director.plan.number_of_users_per_group %> miembro/s. </p>
-              <% if group[:group_members].present? %>
-                <% group[:group_members].each do |member| %>
-                  <div class="group-profile">
-                    <div class="group-profile-user">
-                      <div class="group-profile-user-image">
-                        <%= cl_image_tag(member.image.key, :width => 200, crop: :fill) if member.image.attached? %>
+              <div class="group-profiles-holder">
+                <p><span class="profile-title">Miembros:</span></p>
+                <p><span class="profile-title">Cada grupo puede tener:</span> <%= @director.plan.number_of_users_per_group %> miembro/s. </p>
+                <% if group[:group_members].present? %>
+                  <% group[:group_members].each do |member| %>
+                    <div class="group-profile">
+                      <div class="group-profile-user">
+                        <div class="group-profile-user-image">
+                          <%= cl_image_tag(member.image.key, :width => 200, crop: :fill) if member.image.attached? %>
+                        </div>
+                        <div class="group-profile-user-info">
+                          <p><%= member.full_name %></p>
+                          <p><%= member.email %></p>
+                          <p><%= member.cellphone %></p>
+                          <%= link_to 'Ver perfil', user_path(member.id) %>
+                        </div>
+                        <div class="profile-btns">
+                          <%= button_to 'Eliminar del grupo', groups_user_path(user_id: member.id, group_id: group[:group_id]), method: :delete , class: 'btn'%>
+                        </div>
                       </div>
-                      <div class="group-profile-user-info">
-                        <p><%= member.full_name %></p>
-                        <p><%= member.email %></p>
-                        <p><%= member.cellphone %></p>
-                        <%= link_to 'Ver perfil', user_path(member.id) %>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <p> Sin Miembros. </p>
+                <% end %>
+              </div>
+              <div class="group-profiles-holder">
+                <p><span class="profile-title">Solicitudes:</span></p>
+                <% if group[:requests].present? %>
+                  <% group[:requests].each do |profile| %>
+                    <div class="group-profile">
+                      <div class="group-profile-user">
+                        <div class="group-profile-user-image">
+                          <%= cl_image_tag(profile[:user].image.key, :width => 200, crop: :fill) if profile[:user].image.attached? %>
+                        </div>
+                        <div class="group-profile-user-info">
+                          <p><%= profile[:user].full_name %></p>
+                          <p><%= profile[:user].email %></p>
+                          <p><%= profile[:user].cellphone %></p>
+                          <%= link_to 'Ver perfil', user_path(profile[:user].id) %>
+                        </div>
                       </div>
                       <div class="profile-btns">
-                        <%= button_to 'Eliminar del grupo', groups_user_path(user_id: member.id, group_id: group[:group_id]), method: :delete , class: 'btn'%>
+                        <%= button_to 'Aceptar', groups_users_path(user_id: profile[:user].id, request_id: profile[:request_id], group_id: group[:group_id]), method: :create, class: 'btn' %>
+                        <%= button_to 'Rechazar', assignation_path(request_id: profile[:request_id]), method: :delete, class: 'btn' %>
                       </div>
                     </div>
-                  </div>
+                    <% end %>
+                    <% else %>
+                    <p> Sin solicitudes. </p>
+                    <% end %>
+                <% end %>
                 <% end %>
               <% else %>
-                <p> Sin Miembros. </p>
-              <% end %>
-            </div>
-            <div class="group-profiles-holder">
-              <p><span class="profile-title">Solicitudes:</span></p>
-              <% if group[:requests].present? %>
-                <% group[:requests].each do |profile| %>
-                  <div class="group-profile">
-                    <div class="group-profile-user">
-                      <div class="group-profile-user-image">
-                        <%= cl_image_tag(profile[:user].image.key, :width => 200, crop: :fill) if profile[:user].image.attached? %>
-                      </div>
-                      <div class="group-profile-user-info">
-                        <p><%= profile[:user].full_name %></p>
-                        <p><%= profile[:user].email %></p>
-                        <p><%= profile[:user].cellphone %></p>
-                        <%= link_to 'Ver perfil', user_path(profile[:user].id) %>
-                      </div>
-                    </div>
-                    <div class="profile-btns">
-                      <%= button_to 'Aceptar', groups_users_path(user_id: profile[:user].id, request_id: profile[:request_id], group_id: group[:group_id]), method: :create, class: 'btn' %>
-                      <%= button_to 'Rechazar', assignation_path(request_id: profile[:request_id]), method: :delete, class: 'btn' %>
-                    </div>
-                  </div>
-                  <% end %>
-                  <% else %>
-                  <p> Sin solicitudes. </p>
-                  <% end %>
-              <% end %>
-            <% else %>
-              <p> Sin grupos aún. </p>
+                <p> Sin grupos aún. </p>
             <% end %>
           </div>
       </div>

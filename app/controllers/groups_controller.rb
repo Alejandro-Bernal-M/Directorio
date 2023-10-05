@@ -39,6 +39,11 @@ class GroupsController < ApplicationController
   
   
   def create
+    if current_director.groups.size + 1 > current_director.plan.number_of_groups
+      redirect_to director_path(current_director), alert: 'Máximo número de grupos permitidos alcanzado'
+      return
+    end
+
     @group = Group.new(group_params)
     
     respond_to do |format|
