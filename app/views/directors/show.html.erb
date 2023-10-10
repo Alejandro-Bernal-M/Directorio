@@ -15,6 +15,7 @@
     <p>Aún no tienes un plan.</p>
   <% else %>
     <p><span class="profile-title"> su plan actual es:</span> Plan <%= @director.plan.name %>. </p>
+    <p> la fecha del proximo pago es <%= l(@director.next_payment, format: :default) %> </p>
   <% end %> 
   <% if @plans.size > 0 %>
       <p><%= link_to 'Actualizar plan', plans_path %></p>
