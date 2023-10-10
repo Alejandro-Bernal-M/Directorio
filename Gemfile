@@ -10,6 +10,9 @@ gem 'devise'
 gem 'cloudinary'
 gem 'ffi'
 
+#paypal payments
+gem 'paypal-sdk-rest', '~> 1.7'
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
