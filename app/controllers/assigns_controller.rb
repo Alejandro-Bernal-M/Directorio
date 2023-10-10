@@ -12,6 +12,7 @@ class AssignsController < ApplicationController
         ActiveRecord::Base.connection.execute("DELETE FROM directors_plans WHERE plan_id = #{@directorplan.plan_id} AND director_id = #{@director.id}")
         DirectorsPlan.create(plan: @plan, director: @director)
         redirect_to director_path(current_director), notice: "Plan actualizado"
+        @director.update(next_payment: 1.year.from_now);
       end
     else
       @director.build_directors_plan(plan: @plan)
