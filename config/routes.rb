@@ -30,5 +30,8 @@ Rails.application.routes.draw do
   resources :groups_users, only: [:create, :destroy]
   resources :plans 
 
+  post 'paypal_checkout/:director_id/:plan_id', to: 'paypal/checkouts#create', as: :paypal_checkouts
+ 
+
   get "*path", to: "home#index"
 end

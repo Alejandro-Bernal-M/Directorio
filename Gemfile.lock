@@ -145,6 +145,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
+    net_http_ssl_fix (0.0.10)
     netrc (0.11.0)
     nio4r (2.5.9)
     nokogiri (1.15.4-x64-mingw-ucrt)
@@ -263,6 +264,7 @@ DEPENDENCIES
   ffi
   importmap-rails
   jbuilder
+  net_http_ssl_fix
   paypal-sdk-rest (~> 1.7)
   pg (~> 1.1)
   puma (~> 5.0)

@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :update_allowed_parameters, if: :devise_controller?
   before_action :set_user, unless: :new_user_session_path 
   before_action :super_user?
+  before_action :set_current_plan
 
   def set_user
     unless current_user
@@ -30,6 +31,10 @@ class ApplicationController < ActionController::Base
   def update_allowed_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name, :image, :cellphone, :email, :password, :password_confirmation])
     devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :image, :cellphone, :email, :password, :password_confirmation, :current_password])
+  end
+
+  def set_current_plan
+    @current_plan = Plan.find(params[:plan_id]) if params[:plan_id]
   end
 
   def super_user?

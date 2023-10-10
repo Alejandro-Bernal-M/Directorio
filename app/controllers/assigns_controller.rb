@@ -9,6 +9,10 @@ class AssignsController < ApplicationController
       if @directorplan.plan == @plan
         redirect_to director_path(current_director), alert: "Este es su plan actual"
       else
+        if @plan.price > 0
+          set_current_plan(@plan)
+          return redirect_to plan_path(@plan)
+        end
         ActiveRecord::Base.connection.execute("DELETE FROM directors_plans WHERE plan_id = #{@directorplan.plan_id} AND director_id = #{@director.id}")
         DirectorsPlan.create(plan: @plan, director: @director)
         redirect_to director_path(current_director), notice: "Plan actualizado"

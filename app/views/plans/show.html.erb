@@ -1,0 +1,20 @@
+<section class="section">
+<div class="plan-confirmation">
+  <div class="plan-style" style="background-color:<%= @plan.color %>; color: white; "><%= @plan.name %></div>     
+          <div class="plan-div">
+            <p><span class="profile-title">Nombre del plan:</span></p>
+            <p><%= @plan.name %></p>
+            <p><span class="profile-title">Número de grupos:</span></p>
+            <p><%= @plan.number_of_groups %></p>
+            <p><span class="profile-title">Número de usuarios por grupo:</span></p>
+            <p><%= @plan.number_of_users_per_group %></p>
+            <p><span class="profile-title">Precio al año:</span></p>
+            <p>$<%= @plan.price %></p>
+          </div>
+
+    </div>
+    <%= button_to "Confirmar plan", paypal_checkouts_path(current_director, @plan.id),  class: 'btn', method: :post %>
+
+    <%= link_to 'Atras', :back %>
+</div >
+</section>

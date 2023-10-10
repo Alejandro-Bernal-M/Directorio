@@ -205,7 +205,8 @@ section a {
 #profile-section,
 #director-show,
 #group-show,
-#super-section {
+#super-section,
+.section {
   height: auto;
   width: 100%;
   display: flex;
@@ -613,7 +614,8 @@ select {
   gap: var(--space-1);
 }
 
-.plan-label {
+.plan-label,
+.plan-confirmation {
   display: flex;
   flex-direction: column;
   width: 300px;
