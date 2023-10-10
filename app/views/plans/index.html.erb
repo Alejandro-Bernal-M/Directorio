@@ -1,0 +1,22 @@
+<%= form_with(url: director_assignplan_path(current_director), html: {class: "plans-form"}, method: :post) do |f| %>
+    <div class="plans-container">
+      <% @plans.each do |plan| %>
+        <label class="plan-label">
+          <div class="plan-style" style="background-color:<%= plan.color %>; color: white; "><%= plan.name %></div>
+          <div class="plan-div">
+            <p><span class="profile-title">Nombre del plan:</span></p>
+            <p><%= plan.name %></p>
+            <p><span class="profile-title">Número de grupos:</span></p>
+            <p><%= plan.number_of_groups %></p>
+            <p><span class="profile-title">Número de usuarios por grupo:</span></p>
+            <p><%= plan.number_of_users_per_group %></p>
+            <p><span class="profile-title">Precio al mes:</span></p>
+            <p>$<%= plan.price %></p>
+            <%= f.radio_button :selected_plan_id, plan.id %>
+          </div>
+        </label>
+      <% end %>
+    </div>
+  
+    <%= f.submit "Elegir plan", class: 'btn' %>
+  <% end %>

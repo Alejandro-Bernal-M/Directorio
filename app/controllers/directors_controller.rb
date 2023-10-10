@@ -5,7 +5,7 @@ class DirectorsController < ApplicationController
     @plans = Plan.all
     @users = User.all
     @director = Director.find(params[:id])
-    @max_number_of_groups = @director.plan.number_of_groups
+    @max_number_of_groups = @director.plan.number_of_groups if @director.plan
     @groups = Group.where(director_id: @director.id).order(:created_at)
     @groups_with_requests = @groups.map do |group|
       {
