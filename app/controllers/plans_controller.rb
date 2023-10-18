@@ -50,9 +50,27 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
   end
 
+  def assign
+    @plan= Plan.find(params[:id])
+    @director = current_director
+    @directorplan = @director.directors_plan
+    ActiveRecord::Base.connection.execute("DELETE FROM directors_plans WHERE plan_id = #{@directorplan.plan_id} AND director_id = #{@director.id}")
+    DirectorsPlan.create(plan: @plan, director: @director)
+    redirect_to director_path(current_director), notice: "Plan actualizado"
+    @director.update(next_payment: 1.year.from_now);
+   
+  end
   protected
 
   def plan_params
     params.require(:plan).permit(:name, :number_of_groups, :number_of_users_per_group, :color, :price)
+  end
+
+  private
+  def paypal_init
+    client_id = Rails.application.credentials.paypal_client_id
+    client_secret Rails.application.credentials.paypal_client_secret
+    environment = PayPal::SandboxEnvironment.new client_id, client_secret
+    @client = PayPal::PayPalHttpClient.new environment
   end
 end

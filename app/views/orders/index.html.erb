@@ -1,0 +1,64 @@
+
+<div id="paypal-button-container"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=AcvOOJcimG2xx8ziWSbu7xJz4TMIni7lVxDJuWk5RrCH9UdYlOac8Bvpf32ILl3Ii_gkOS0r6jy1ZAFY"></script>
+<script>
+  paypal.Buttons({
+    env: 'sandbox', // Valid values are sandbox and live.
+    createOrder: async () => {},
+    onApprove: async (data) => {}
+  }).render('#paypal-button-container');
+   createOrder: async () => {
+      const response = await fetch('/create_order', { method: 'POST' });
+      const responseData = await response.json();
+
+      return responseData.token;
+    }
+    onApprove: async (data) => {
+      const response = await fetch('/capture_order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ order_id: data.orderID })
+      });
+
+      const responseData = await response.json();
+
+      if (responseData.status === 'COMPLETED') {
+        alert('COMPLETED');
+        // REDIRECT TO SUCCESS PAGE
+      }
+    }
+</script>
+<%# <div id="paypal-button-container"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=AcvOOJcimG2xx8ziWSbu7xJz4TMIni7lVxDJuWk5RrCH9UdYlOac8Bvpf32ILl3Ii_gkOS0r6jy1ZAFY"></script>
+<script>
+  paypal.Buttons({
+    env: 'sandbox', // Or 'sandbox'
+    style: {
+      layout: 'horizontal',  // horizontal | vertical
+      size:   'medium',    // medium | large | responsive
+      shape:  'pill',      // pill | rect
+      color:  'blue'       // gold | blue | silver | black
+    },
+    // Set up the transaction
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: `<%= @plan.price %>`,
+          <%# },
+        }]
+      });
+    },
+    // Finalize the transaction
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        // Show a success message to the buyer
+        alert('Transaction completed by ' + details.payer.name.given_name + '!');
+        @plan.assign(@plan)
+      });
+    }
+  }).render('#paypal-button-container');
+</script> %>
+<%= @plan.price %> %>

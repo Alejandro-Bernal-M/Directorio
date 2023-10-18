@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_10_201104) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_18_163537) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -102,6 +102,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_201104) do
     t.index ["user_id"], name: "index_jobs_users_on_user_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.boolean "paid", default: false
+    t.string "token"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "plans", force: :cascade do |t|
     t.string "name"
     t.integer "number_of_groups"
@@ -110,6 +118,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_201104) do
     t.datetime "updated_at", null: false
     t.string "color"
     t.integer "price"
+    t.string "stripe_plan_name"
+    t.string "paypal_plan_name"
   end
 
   create_table "professions", force: :cascade do |t|

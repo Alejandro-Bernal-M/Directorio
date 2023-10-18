@@ -13,7 +13,61 @@
           </div>
 
     </div>
-    <%= button_to "Confirmar plan", paypal_checkouts_path(current_director, @plan.id),  class: 'btn', method: :post %>
+   <div id="paypal-button-container"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=AcvOOJcimG2xx8ziWSbu7xJz4TMIni7lVxDJuWk5RrCH9UdYlOac8Bvpf32ILl3Ii_gkOS0r6jy1ZAFY"></script>
+<script>
+  paypal.Buttons({
+    env: 'sandbox', // Or 'sandbox'
+    style: {
+      layout: 'horizontal',  // horizontal | vertical
+      size:   'medium',    // medium | large | responsive
+      shape:  'rect',      // pill | rect
+      color:  'gold'       // gold | blue | silver | black
+    },
+    // Set up the transaction
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: `<%= @plan.price %>`,
+          },
+        }]
+      });
+    },
+    // Finalize the transaction
+    onApprove: async (data) => {
+      const response = await fetch('/capture_order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ order_id: data.orderID })
+      });
+
+      const responseData = await response.json();
+
+      if (responseData.status === 'COMPLETED') {
+        alert('COMPLETED');
+        // REDIRECT TO SUCCESS PAGE
+      }
+    }
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        console.log(details)
+        fetch(`/assign_plan/<%= @plan.id %>`, { method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': Rails.csrfToken()
+        },
+         })
+      });
+    }
+  }).render('#paypal-button-container');
+</script>
+<%= @plan.price %>
+  
+
+
 
     <%= link_to 'Atras', :back %>
 </div >

@@ -10,10 +10,12 @@ gem 'devise'
 gem 'cloudinary'
 gem 'ffi'
 
-#paypal payments
-gem 'paypal-sdk-rest', '~> 1.7'
+# payments
+gem "money-rails"
+gem "haml"
+gem "jquery-rails"
+gem 'paypal-checkout-sdk'
 
-gem 'net_http_ssl_fix', require: 'net_http_ssl_fix'
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
