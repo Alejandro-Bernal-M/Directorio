@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :update_allowed_parameters, if: :devise_controller?
   before_action :set_user, unless: :new_user_session_path 
   before_action :super_user?
+  before_action :set_current_plan
 
   def set_user
     unless current_user
@@ -32,9 +33,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :image, :cellphone, :email, :password, :password_confirmation, :current_password])
   end
 
+  def set_current_plan
+    @current_plan = Plan.find(params[:plan_id]) if params[:plan_id]
+  end
+
   def super_user?
     @super_users = ['alejandrober']
-    if current_director &&  current_director.username == 'alejandrober'
+    if current_director &&  @super_users.include?(current_director.username)
       @super_user = true
     else
       @super_user = false

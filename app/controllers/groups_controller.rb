@@ -31,6 +31,7 @@ class GroupsController < ApplicationController
     @jobsusers = JobsUser.all
     @users = @group.users
     @users_processed = @users.map {|user| {user: user, jobs: user.jobs.map{|job| {job: job, responsibilities: @responsibilities.where(jobs_user_id: @jobsusers.where(job_id: job.id, user_id: user.id))}}, professions: user.professions,  jobplaces: user.jobplaces }}
+    @max_number_of_users = @director.plan.number_of_users_per_group if @director.plan
   end
 
   def new
@@ -39,6 +40,11 @@ class GroupsController < ApplicationController
   
   
   def create
+    if current_director.groups.size + 1 > current_director.plan.number_of_groups
+      redirect_to director_path(current_director), alert: 'Máximo número de grupos permitidos alcanzado'
+      return
+    end
+
     @group = Group.new(group_params)
     
     respond_to do |format|

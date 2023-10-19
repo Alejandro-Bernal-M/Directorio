@@ -1,0 +1,25 @@
+<%= form_for(:director, url: director_path(@director), method: :patch, html: {class: "add-new-info-form"}) do |f| %>
+  <div class="field">
+    <%= f.label :username, 'Nombre de usuario'%>
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, 'Correo electrónico'%>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, 'Contraseña'%>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, 'Confirmar contraseña'%>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <%= f.submit 'Editar director', class: 'btn' %>
+
+  <%= link_to 'Atrás', :back %>
+<% end %>

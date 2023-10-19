@@ -1,0 +1,60 @@
+
+<section class="section">
+<script  src="https://www.paypal.com/sdk/js?client-id=AcvOOJcimG2xx8ziWSbu7xJz4TMIni7lVxDJuWk5RrCH9UdYlOac8Bvpf32ILl3Ii_gkOS0r6jy1ZAFY" data-namespace="paypal_sdk"></script>
+<div class="plan-confirmation">
+  <div class="plan-style" style="background-color:<%= @plan.color %>; color: white; "><%= @plan.name %></div>     
+          <div class="plan-div">
+            <p><span class="profile-title">Nombre del plan:</span></p>
+            <p><%= @plan.name %></p>
+            <p><span class="profile-title">Número de grupos:</span></p>
+            <p><%= @plan.number_of_groups %></p>
+            <p><span class="profile-title">Número de usuarios por grupo:</span></p>
+            <p><%= @plan.number_of_users_per_group %></p>
+            <p><span class="profile-title">Precio al año:</span></p>
+            <p>$<%= @plan.price %></p>
+          </div>
+
+    </div>
+  <div id="paypal-button-container"></div>
+  <script>
+    setTimeout(() => {
+      paypal_sdk.Buttons({
+        env: 'sandbox', // Or 'sandbox'
+        style: {
+          layout: 'horizontal',  // horizontal | vertical
+          size:   'responsive',    // medium | large | responsive
+          shape:  'rect',      // pill | rect
+          color:  'gold'       // gold | blue | silver | black
+        },
+        // Set up the transaction
+        createOrder: async function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: `<%= @plan.price %>`,
+              },
+              redirect_urls: {
+                return_url: 'http://localhost:3000/directors/<%= @current_director.id %>',
+                cancel_url: 'http://localhost:3000/plan/<%= @plan %>',
+              }
+            }]
+          });
+        },
+        // Finalize the transaction
+        onApprove: function(data, actions) {
+          return actions.order.capture().then( async function(details) {
+            console.log(details)
+           const response = await fetch(`/assign_plan/<%= @plan.id %>`, { method: 'POST',})
+           console.log('response', response)
+            window.location.href = response.url
+          });
+        }
+      }).render('#paypal-button-container');
+      
+    }, 1000)
+</script>
+  
+
+    <%= link_to 'Atras', :back %>
+</div >
+</section>

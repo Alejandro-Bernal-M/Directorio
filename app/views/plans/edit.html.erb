@@ -1,0 +1,43 @@
+<section class="register">
+<h2> Actualizar Plan</h2>
+<% if @plan.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@plan.errors.count, "errores") %> prohiben actualizar el plan:</h2>
+
+    <ul>
+      <% @plan.errors.full_messages.each do |message| %>
+        <li><%= message.split(' ', 2).second %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+  <%= form_for(:plan, url: plan_path(@plan), method: :patch, html: {class: "add-new-info-form"}) do |f| %>
+    <div class="field">
+      <%= f.label :name, 'Nombre del plan'%>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :number_of_groups, 'Número de grupos'%>
+      <%= f.number_field :number_of_groups %>
+    </div>
+
+    <div class="field">
+      <%= f.label :number_of_users_per_group, 'Número de usuarios por grupo'%>
+      <%= f.number_field :number_of_users_per_group %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :price, 'Precio'%>
+      <%= f.number_field :price %>
+    </div>
+
+    <div class="field">
+      <%= f.label :color, 'Color'%>
+      <%= f.color_field :color %>
+    </div>
+
+    <%= f.submit 'Actualizar', class: 'btn' %>
+  <% end %>
+  <%= link_to 'Atrás', :back %>
+</section>

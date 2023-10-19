@@ -10,6 +10,13 @@ gem 'devise'
 gem 'cloudinary'
 gem 'ffi'
 
+# payments
+gem "money-rails"
+gem "haml"
+gem "jquery-rails"
+gem 'paypal-checkout-sdk'
+
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"

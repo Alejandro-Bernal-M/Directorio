@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_15_134046) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_10_201104) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_134046) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "next_payment", precision: nil
+  end
+
+  create_table "directors_plans", id: false, force: :cascade do |t|
+    t.bigint "director_id"
+    t.bigint "plan_id"
+    t.index ["director_id", "plan_id"], name: "index_directors_plans_on_director_id_and_plan_id", unique: true
+    t.index ["director_id"], name: "index_directors_plans_on_director_id"
+    t.index ["plan_id"], name: "index_directors_plans_on_plan_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -93,6 +102,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_134046) do
     t.index ["user_id"], name: "index_jobs_users_on_user_id"
   end
 
+  create_table "plans", force: :cascade do |t|
+    t.string "name"
+    t.integer "number_of_groups"
+    t.integer "number_of_users_per_group"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "color"
+    t.integer "price"
+  end
+
   create_table "professions", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -134,6 +153,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_134046) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "directors_plans", "plans", on_delete: :cascade
   add_foreign_key "groups", "directors"
   add_foreign_key "groups_users", "groups"
   add_foreign_key "groups_users", "users"

@@ -33,7 +33,8 @@
     <p class='search-results'> </p>
   </div>
   <div class="group-profiles-holder directory-profile-holder">
-    <% @users_processed.each do |user| %>
+    <% @users_processed.each_with_index do |user, index| %>
+      <% if index < @max_number_of_users %>
       <div class="group-profile">
         <div class="group-profile-user">
           <div class="group-profile-user-image directory-image">
@@ -106,6 +107,7 @@
           </div>
         </div>
       </div>
+      <% end %>
     <% end %>
   </div>
 </section>

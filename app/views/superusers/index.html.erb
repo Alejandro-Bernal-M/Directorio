@@ -1,7 +1,61 @@
 <section id="super-section" >
   <h1>Hola <%= current_director.username %></h1>
+
+  <%= form_for(:plan, url: plans_path, html: {class: "add-new-info-form"}) do |f| %>
+    <h2> Crear Plan</h2>
+    <div class="field">
+      <%= f.label :name, 'Nombre del plan'%>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :number_of_groups, 'Número de grupos'%>
+      <%= f.number_field :number_of_groups %>
+    </div>
+
+    <div class="field">
+      <%= f.label :number_of_users_per_group, 'Número de usuarios por grupo'%>
+      <%= f.number_field :number_of_users_per_group %>
+    </div>
+
+    <div class="field">
+      <%= f.label :price, 'Precio'%>
+      <%= f.number_field :price %>
+    </div>
+
+    <div class="field">
+      <%= f.label :color, 'Color'%>
+      <%= f.color_field :color %>
+    </div>
+
+    <%= f.submit 'Crear Plan', class: 'btn' %>
+  <% end %>
     
+  <h2> Lista de planes: </h2>
+  <ul class="directors-list">
+    <% if @plans.size > 0 %>
+      <% @plans.map do |plan| %>
+        <li >
+            <div style="background-color:<%= plan.color %>;" class="plan-color"></div>
+            <p><span class="profile-title">Nombre del plan:</span></p>
+            <p><%= plan.name %></p>
+            <p><span class="profile-title">Número de grupos:</span> </p>
+            <p><%= plan.number_of_groups %></p>
+            <p><span class="profile-title">Número de usuarios por grupo:</span> </p>
+            <p><%= plan.number_of_users_per_group %></p>
+            <p><span class="profile-title">Precio al año:</span> </p>
+            <p>$<%= plan.price %></p>
+            <%= button_to 'Eliminar', plan_path(plan), method: :delete, class: 'btn' %>
+            <%= link_to 'Editar', edit_plan_path(plan) %>
+          </li> 
+      <% end %>
+    <% else %>
+      <li> No hay planes aún </li>
+    <% end %>
+  </ul>
+
   <%= form_for(:director, url: directors_path, html: {class: "add-new-info-form"}) do |f| %>
+    <h2> Crear Director </h2>
     <div class="field">
       <%= f.label :username, 'Nombre de usuario'%>
       <%= f.text_field :username %>
@@ -34,6 +88,9 @@
             <p><%= director.username %></p>
             <p>Correo: </p>
             <p><%= director.email %></p>
+            <p>Plan: </p>
+            <p><%= director.plan || 'sin plan' %></p>
+            <%= link_to 'Editar', edit_director_path(director) %>
             <%= button_to 'Eliminar', director_path(director), method: :delete, class: 'btn' %>
           </li> 
         <% end %>
