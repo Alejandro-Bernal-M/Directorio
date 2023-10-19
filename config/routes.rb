@@ -30,9 +30,8 @@ Rails.application.routes.draw do
   resources :groups_users, only: [:create, :destroy]
   resources :plans 
 
-  get '/orders', :to => 'orders#index'
-  post :create_order, :to => 'orders#create_order'
-  post :capture_order, :to => 'orders#capture_order'
+  post :create_order, :to => 'plans#create_order'
+  post :capture_order, :to => 'plans#capture_order'
   post '/assign_plan/:id', :to => 'plans#assign', as: 'assign_plan'
  
   get "*path", to: "home#index"
